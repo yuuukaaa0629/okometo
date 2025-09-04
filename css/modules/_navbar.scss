@@ -1,0 +1,314 @@
+/* ===================================
+   navbar
+=================================== */
+
+.navbar {
+  position: fixed;
+  top: 0; left: 0; width: 100%;
+  z-index: 1000;
+
+  /* セクションに応じてJSが更新するCSS変数 */
+  background-color: var(--nav-bg-color, transparent);
+  background-image: var(--nav-bg-image, none);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  /* ぼかしを効かせたい場合は色にアルファを持たせる */
+  backdrop-filter: var(--nav-backdrop, none);
+
+  border-bottom: 1px solid rgba(0,0,0,0.1);
+  transition: background-color .3s ease, background-image .3s ease, backdrop-filter .3s ease;
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px 0 0;
+  }
+
+  nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 0;
+    position: relative;
+
+    .brand {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.1;
+      align-items: flex-start; // 常に左寄せ
+      justify-content: flex-start; // 常に左寄せ
+      margin-left: 24px; // 左に余白を追加
+      position: fixed; // 固定配置に変更
+      left: 0;
+      top:8px; // 文字の位置をもう少し下に
+      z-index: 1100;
+      background: transparent; // 必要に応じて背景色を調整
+      .title {
+        font-size: 16px;
+        font-weight: 700;
+        color: #222;
+      }
+      .tagline {
+        font-size: 12px;
+        color: #666;
+      }
+    }
+    .nav-toggle { display: none; } // デスクトップはボタン非表示
+
+    .nav-list {
+    /* デスクトップは横並び */
+      display: flex;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      gap: 30px;
+      margin-left: auto;
+      li {
+        a {
+          color: #333;
+          text-decoration: none;
+          font-size: 16px;
+          font-weight: 500;
+          padding: 8px 16px;
+          border-radius: 20px;
+          transition: all 0.3s ease;
+          position: relative;
+
+          &:hover {
+            color: #8B4513;
+            background: rgba(139, 69, 19, 0.1);
+          }
+
+          &::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: #8B4513;
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+          }
+
+          &:hover::after {
+            width: 80%;
+          }
+        }
+      }
+    }
+
+    h1 {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      margin: 0;
+      text-align: center;
+      /* メニュー操作を邪魔しないように重なり順とポインター挙動を調整 */
+      z-index: 0; 
+      pointer-events: none;
+
+      .catch {
+        font-size: 14px;
+        font-weight: 400;
+        color: #666;
+        line-height: 1.4;
+        white-space: nowrap;
+      }
+    }
+  }
+
+  // スクロール時のスタイル変更
+  &.scrolled {
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+    background-color: rgba(255, 255, 255, 0.9);
+    backdrop-filter: saturate(150%) blur(6px);
+    background-image: none; // 画像は消す
+
+    nav {
+      padding: 10px 0;
+      
+      .logo img {
+        height: 35px;
+      }
+      
+      h1 .catch {
+        font-size: 12px;
+      }
+    }
+  }
+}
+
+@media (max-width: 960px) {
+  .navbar {
+    .container {
+      max-width: 1200px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 0 16px;
+      position: relative;
+      min-height: 52px; // 高さをさらに減らす
+    }
+    nav {
+      /* スクロール時もnav内の要素の位置が変わらないように固定 */
+      position: relative;
+      padding: 4px 0 !important; // スクロール時も常に同じpadding
+      min-height: 52px; // 高さも固定
+
+      .nav-toggle { 
+        display: inline-flex; 
+        align-items: center; 
+        justify-content: center;
+        flex-direction: column;
+        gap: 5px; // 少し間隔を狭める
+        padding: 4px 0; // 上下に余白を減らす
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        transform-origin: center;
+        position: absolute;
+        top: 50%; // 常に縦中央
+        right: 16px; // 右側に固定
+        left: auto; // 念のため左指定を解除
+        transform: translateY(-50%);
+        z-index: 1001;
+
+        .bar {
+          display: block;
+          width: 22px; // 横幅をさらに狭める
+          height: 2px; // 太さを細く
+          background-color: #333; /* 色は好みに応じて */
+          border-radius: 1.5px;
+          transition: all 0.3s ease;
+        }
+
+        /* 開いた時にハンバーガー→バツ印へ */
+        &[aria-expanded="true"] .bar:nth-child(1) {
+          transform: translateY(7px) rotate(45deg);
+        }
+        &[aria-expanded="true"] .bar:nth-child(2) {
+          opacity: 0;
+          transform: scaleX(0);
+        }
+        &[aria-expanded="true"] .bar:nth-child(3) {
+          transform: translateY(-7px) rotate(-45deg);
+        }
+      }
+
+      .brand {
+        position: absolute; // フレックスの流れから外して縦中央に
+        left: 0;
+        margin-left: 12px;
+        top: 75%; // 常に縦中央
+        transform: translateY(-50%);
+        height: 52px; // brandの高さを明示的に指定（containerのmin-heightと揃える）
+        display: flex;
+        align-items: center;
+        .title { font-size: 13px; }
+        .tagline { 
+          display: block; 
+          font-size: 10px;
+          color: #666;
+          margin-top: 2px;
+          line-height: 1.2;
+        }
+      }
+    }
+    
+    .nav-list {
+      display: none !important; /* 初期は必ず閉じる（JSで[data-open]時のみ開く） */
+      pointer-events: none;
+      position: absolute;
+      top: var(--navbar-height, 52px);
+      left: 0;
+      right: 0;     
+      min-height: 40px; // 高さをさらに小さく
+      padding: 0.3rem 0.7rem; // 上下の余白もさらに減らす
+      background: url('../../images/navbar-bg.jpg') center center/cover no-repeat;
+      box-shadow: 0 10px 30px rgba(0,0,0,.12);
+      flex-direction: column;
+      gap: 0.4rem; // メニュー間の余白も少し減らす
+      z-index: 1000;
+      align-items: center; /* 中央寄せ */
+      justify-content: center;
+      text-align: center;
+
+      &[data-open] {
+        display: flex !important;
+        pointer-events: auto; /* ← 開いた状態ではクリック可能にする */
+      }
+
+      li {
+        width: 100%;
+      }
+
+      a {
+        letter-spacing: 0.15em; /* 文字間隔を広めに */
+        font-size: 0.95rem; // 文字サイズをさらに小さく
+        color: #3a2c1a;
+        font-weight: 600;
+        padding: 0.25em 0; // 上下の余白をさらに減らす
+        border-radius: 12px; /* 角も少し控えめに */
+        transition: 
+          color 0.2s, 
+          background 0.2s, 
+          filter 0.2s,
+          font-size 0.22s cubic-bezier(0.4,0,0.2,1); // 文字サイズもアニメーション
+        display: inline-block;
+        text-align: center;
+        position: relative;
+        z-index: 1; // 画像背景より上に
+
+        // 疑似要素で半透明の白背景を重ねる（ホバー・フォーカス時のみ表示）
+        &::before {
+          content: '';
+          position: absolute;
+          inset: 0;
+          border-radius: 12px; /* 角も少し控えめに */
+          background: rgba(255,255,255,0.5);
+          opacity: 0;
+          pointer-events: none;
+          transition: opacity 0.2s;
+          z-index: -1;
+        }
+
+        // ホバー・フォーカス時の色変化＋文字サイズ拡大
+        &:hover,
+        &:focus {
+          color: #6b4f1d !important;
+          filter: brightness(1.1) !important;
+        }
+        &:hover::before,
+        &:focus::before {
+          opacity: 1;
+        }
+
+        // クリック時（:active）は色変化を明示的に指定
+        &:active {
+          color: #a97c3a !important; // クリック時はより濃い茶色に
+          filter: brightness(0.95) !important;
+        }
+        &:active::before {
+          opacity: 1;
+        }
+      }
+    }
+  }
+}
+
+/* ナビ分の余白を自動で確保（JSが--navbar-heightをセット） */
+.has-fixed-navbar {
+  padding-top: var(--navbar-height, 80px);
+}
+
+/* アンカーリンク(#stories等)で見出しが隠れないように */
+section {
+  scroll-margin-top: var(--navbar-height, 80px);
+}
+
+.navbar-offset {
+  scroll-margin-top: var(--navbar-height, 80px);
+}

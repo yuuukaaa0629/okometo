@@ -1,0 +1,543 @@
+@charset "utf-8";
+/*===================================================================================================
+□ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ 
+
+〇 top 〇
+
+□ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ 
+====================================================================================================*/
+
+.top {
+    margin-top: 0 !important;
+    padding-top: var(--navbar-height, 80px); // navbarの高さ分だけ内側に余白
+    overflow: visible;
+    background: url(../images/header-bg.jpg) no-repeat 0 0;
+    background-size: cover;
+    
+    // 背景がnavbarの後ろまで表示されるように
+    background-attachment: scroll; // 背景を固定（オプション）
+    .container {
+        max-width: 1920px;
+        margin: 0 auto 0;
+        nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            // navbarとの隙間をなくす
+            margin-top: 0;
+            padding-top: 0;
+
+            ul {
+                display: flex;
+                align-items: center; 
+                li {
+                    margin: 0 30px 0 0;
+                    a {
+                        color: $black-color;
+                        font-weight: 500;
+                        letter-spacing: 2px;
+                        font-size: 18px;
+                        padding: 0 0 0 0;
+                    }
+                    
+                    &:last-child {
+                        margin: 0 0 0 0;
+                    }
+                }
+            }
+        }
+        
+        .first-view {
+            display: flex;
+            align-items: flex-start;
+            flex-direction: row-reverse;
+            margin: 0;
+            margin-top: 0px;
+            padding: 0 0 0 3%;
+            
+            .text {
+                color: $black34-color;
+                width: calc(100% - 50vw);
+                padding: 50px 0 0 0;
+                order: 2;
+                text-align: left; /* PCではh1/h2ブロックを左寄せ */
+
+                // ヘッディングのマージン・パディングをリセットし、余白をレイアウトで制御
+                h2, h1 {
+                    margin: 0;     /* デバイス差異によるズレ防止 */
+                    padding: 0;
+                }
+
+                h2 {
+                    .catch {
+                        font-weight: 500;
+                        line-height: 1.25;
+                        letter-spacing: 5px;
+                        font-size: 66px;
+                        margin-top: -45px;
+                    }
+                }
+                h1 {
+                    margin-top: 40px; // 上にスペースを追加
+                    .catch {
+                        font-weight: 600;
+                        letter-spacing: 2px;
+                        font-size: 32px;
+                        color: #4B3621;
+                    }
+                }
+
+                // デバイスバリアントのspanが非表示時も高さ影響しないように
+                .catch-text, .catch-text-ipad, .catch-text-iphone {
+                    line-height: inherit;   /* フォント差異の影響を極小化 */
+                }
+                .catch-text {
+                    display: inline !important;
+                }
+                .catch-text-ipad {
+                    display: none !important;
+                }
+                .catch-text-iphone {
+                    display: none !important;
+                }
+                ul {
+                    margin: 30px 0 0 0;  
+                    li {
+                        background: url(../images/verify.svg) no-repeat 0 center;
+                        background-size: 20px auto;
+                        font-size: 20px;
+                        padding: 5px 20px 5px 30px;
+                    }
+                }
+                .sentence {
+                    margin: 10px 0 0 0; 
+                    p {
+                        line-height: 2.0;
+                        font-size: 18px;
+                        padding: 10px 0 10px 0;
+                    }
+                }
+            }
+            .splide {
+                width: 50vw; 
+                order: 1;  
+                .splide__track {
+                    width: 100%;
+                    .splide__list {
+                        width: 100%;
+                        .splide__slide {
+                            width: 100%;
+                            .thumb {
+                                overflow: hidden;
+                                position: relative;
+                                right: -5vw;
+                                top: 0;
+                                border-radius: 50%;
+                                width: 50vw;
+                                height: 50vw;
+                                img {
+                                    border-radius: 50%;
+                                    transition: 8s ease-out;
+                                    object-fit: cover;
+                                    width: 100%;
+                                    height: 100%;
+                                }
+                            }
+                            &.is-active {
+                                .thumb {
+                                    img {
+                                        transform: scale(1.15);
+                                        transition-delay: 0s;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+/**********************************************************************************
+□ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □  
+
+◆	Stylesheet: 1024px～1280px(iPad縦からiPad横)までのモニタで適用	◆
+
+start----------------------------------------------------------------------------*/
+
+@media screen and (min-width: 1024px) and (max-width: 1280px) {
+    .top {
+        .container {
+            max-width: 1920px;
+            margin: 0 auto 0;
+            .first-view {
+                padding: 0 !important;              /* 左余白 3% を確実に無効化 */
+                padding-left: 0 !important;
+                margin-top: 0;           /* 念のため */
+                display: grid;
+                grid-template-columns: 54% 44%; /* 54% + 44% + 2% gap = 100% で見切れ防止 */
+                grid-auto-rows: auto;
+                align-items: start;
+                column-gap: 2%;
+
+                .text {
+                    display: contents; /* 子要素をグリッド直下に */
+                    padding: 0;
+                    margin: 0;
+                    padding-left: 48px;
+                    
+                    h2, h1 {
+                        padding-left: 52px; /* 少し狭めて左余白を縮小 */
+                    }
+                    h2 {
+                        .catch {
+                            margin-top: 0;
+                            font-size: 4.0rem;
+                            width: 100%; 
+                            text-align: left;
+                        }
+                    }
+                    h1 {
+                        margin: -130px 0 0 0; 
+                        font-size: 4.0rem;
+                    }
+                }
+                .text ul { 
+                    grid-column: 1 / -1; 
+                    max-width: none; 
+                    width: 100%; 
+                    text-align: center; 
+                    margin: 20px 0; 
+                    margin-left: 0; /* 左右中央に配置 */
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center; /* マークと文字を中央揃え */
+                    padding: 0;
+                    font-size: 1.4rem;
+                }
+                .text ul li {
+                    display: flex;
+                    align-items: center;
+                    justify-content: flex-start; /* 左揃えに変更 */
+                    background-position: left center;
+                    background-repeat: no-repeat;
+                    background-size: 16px auto;
+                    padding-left: 25px; /* マーク分の余白 */
+                    width: auto;
+                    margin-left: 0;
+                    font-size: 1.4rem; // 文字を大きく
+                    text-align: left; /* 文字を左揃え */
+                }
+                .text .sentence { 
+                    grid-column: 1 / -1; 
+                    max-width: 80%; 
+                    width: 80%; 
+                    margin: 18px auto 0; 
+                    text-align: left; /* 左揃えに変更 */
+                    margin-left: auto;  /* 完全に中央配置 */
+                    margin-right: auto; /* 完全に中央配置 */
+                    display: flex;
+                    flex-direction: column;
+                    align-items: flex-start; /* 左揃えに変更 */
+                    justify-content: center;
+                    font-size: 1.3rem; // 文字を大きく
+                }
+                .text .sentence p { 
+                    max-width: 100%; 
+                    text-align: left; /* 左揃えに変更 */
+                    font-size: 1.3rem; // 文字を大きく
+                }
+
+                .splide {
+                  grid-column: 2;
+                  grid-row: 1;
+                  align-self: start;
+                  width: 100%; /* 右カラムいっぱいにフィット */
+                  .splide__track {
+                    .splide__list {
+                      .splide__slide {
+                        .thumb {
+                          right: auto;
+                          left: 0;
+                          width: 100%;
+                          height: auto;
+                          aspect-ratio: 1 / 1; /* 正円を維持しつつ横幅にフィット */
+                        }
+                      }
+                    }
+                  }
+                }
+            }
+        }
+    }
+} /* 1024px～1280px responsive-close */
+
+/**********************************************************************************
+□ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □  
+
+◆	Stylesheet: 768px～1023px(iPad縦からiPad横)までのモニタで適用	◆
+
+start----------------------------------------------------------------------------*/
+
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+    .top {
+        .container {
+            max-width: 1920px;
+            margin: 0 auto 0;
+            padding-top: 0 !important; /* navbarとの余白をなくす */
+            .first-view {
+                padding: 0 !important;
+                padding-left: 0 !important;
+                margin-top: 0 !important;
+                display: grid;
+                grid-template-columns: 54% 44%; /* 54% + 44% + 2% gap = 100% で見切れ防止 */
+                grid-auto-rows: auto;
+                align-items: start;
+                column-gap: 2%; /* 合計100%+gapでオーバーしないように */
+
+                justify-items: start; /* グリッド内のアイテムを左寄せ */
+
+                .text {
+                    display: contents; /* 子要素をグリッド直下に */
+                    padding: 0;
+                    margin: 0;
+                    padding-left: 48px;
+                    
+                    h2, h1 {
+                        padding-left: 24px; /* 少し狭めて左余白を縮小 */
+                    }
+                    h2 {
+                        
+                        .catch {
+                            margin-top: 0;
+                            font-size: 3.0rem;
+                            width: 100%; /* カラム幅にフィットさせて横見切れ防止 */
+                            text-align: left;
+                        }
+                    }
+                    h1 {
+                        margin: -130px 0 0 0; 
+                        font-size: 2.0rem;
+                    }
+                }
+                
+               
+                .text ul { 
+                    grid-column: 1 / -1; 
+                    max-width: none; 
+                    width: 100%; 
+                    text-align: center; 
+                    margin: 20px 0; 
+                    margin-left: 0; /* 左右中央に配置 */
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center; /* マークと文字を中央揃え */
+                    padding: 0;
+                }
+                .text ul li {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center; /* マーク＋テキスト全体を中央揃え */
+                    background-position: left center;
+                    background-repeat: no-repeat;
+                    background-size: 16px auto;
+                    padding-left: 25px; /* マーク分の余白 */
+                    width: auto;
+                    margin-left: 0;
+                }
+                .text .sentence { 
+                    grid-column: 1 / -1; 
+                    max-width: 80%; 
+                    width: 80%; 
+                    margin: 18px auto 0; 
+                    text-align: center; 
+                    margin-left: auto;  
+                    margin-right: auto; 
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: center;
+                }
+                .text .sentence p { 
+                    max-width: 90%; 
+                    text-align: center;
+                }
+
+                .splide {
+                  grid-column: 2;
+                  grid-row: 1;
+                  width: 100%; /* グリッド右カラムいっぱいに */
+                  margin-top: 0; /* はみ出し・余白の原因を防ぐ */
+                  margin-left: 0; /* はみ出し防止 */
+                  .splide__track {
+                    .splide__list {
+                      .splide__slide {
+                        .thumb {
+                          right: auto;
+                          left: 0;
+                          width: 100%;
+                          height: auto;
+                          aspect-ratio: 1 / 1; /* 正円を維持しつつ横幅にフィット */
+                        }
+                      }
+                    }
+                  }
+                }
+            }
+        }
+    }
+}
+/* 768px～1023px responsive-closed */
+
+/**********************************************************************************
+ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ 
+
+◆	Stylesheet: 767pxまで(スマホ)のモニタで適用	◆
+
+□ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ 
+start----------------------------------------------------------------------------*/
+@media screen and (max-width: 767px) {
+    .top {
+        overflow: visible;
+        background-attachment: scroll;
+        background-position: center center;
+        min-height: 100vh;
+        margin-top: 0 !important;
+        padding-top: 0 !important;
+        scroll-margin-top: var(--navbar-height, 80px); // スムーススクロール用のみ残す
+        /* 文字位置を少し上げるためにpadding-bottomを追加 */
+        padding-bottom: 40px;
+        .container {
+            max-width: 100%;
+            margin: 0 auto;
+            .first-view {
+                display: flex;
+                flex-direction: column; // 縦並び
+                align-items: center;
+                margin:0;
+                padding: 0 4%; // 左右の余白を調整
+                min-height: calc(100vh - var(--navbar-height, 80px));
+                
+                .splide {
+                    width: 90vw; // 幅を広げる
+                    max-width: 400px; // 最大幅制限
+                    order: 1; // 順序を明示的に指定
+                    margin-bottom: 30px;
+                    .splide__track {
+                        width: 100%;
+                        .splide__list {
+                            width: 100%;
+                            .splide__slide {
+                                width: 100%;
+                                .thumb {
+                                    overflow: hidden;
+                                    position: relative;
+                                    right: 0; // 右オフセットをリセット
+                                    top: 0;
+                                    border-radius: 50%;
+                                    width: 90vw;
+                                    max-width: 400px;
+                                    height: 90vw;
+                                    max-height: 400px;
+                                    margin: 0 auto; // 中央揃え
+                                    
+                                    img {
+                                        border-radius: 50%;
+                                        transition: 8s ease-out;
+                                        object-fit: cover;
+                                        width: 100%;
+                                        height: 100%;
+                                    }
+                                }
+                                
+                                &.is-active {
+                                    .thumb {
+                                        img {
+                                            transform: scale(1.15);
+                                            transition-delay: 0s;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                
+                // テキストを下部に配置
+                .text {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 14px;
+                    width: 100%; // 全幅使用
+                    padding: 0; // パディングリセット
+                    text-align: center; // 中央揃え
+                    order: 2; // 順序を明示的に指定
+                    border-radius: 20px;
+                    padding: 30px 20px 40px;
+                    margin-bottom: 30px;
+                    box-shadow: 0 0px 30px rgba(0, 0, 0, 0.1);
+                    align-items: center; /* スマホ時は中央寄せ */
+
+                    h2 {
+                        margin: 0;
+                        margin-bottom: 16px;
+                        text-align: center; // 中央揃え
+                        .catch {
+                            line-height: 1.2;
+                            letter-spacing: 1.5px;
+                            font-size: clamp(32px, 7vw, 48px);
+                            margin-top: 0;
+                            font-weight: bold;
+                            text-align: center;
+                            display: block;
+                        }
+                    }
+
+                    h1 {
+                        margin: 0;
+                        text-align: center; // 中央揃え
+
+                        .catch {
+                            letter-spacing: 1.2px;
+                            font-size: clamp(20px, 5vw, 28px);
+                            line-height: 1.5;
+                            color: #4B3621;
+                            text-align: center;
+                            display: block;
+                        }
+                    }
+                    
+                    ul {
+                        margin: 25px 0;
+                        text-align: left; // リストは左揃え
+                        max-width: 350px;
+                        margin-left: auto;
+                        margin-right: auto;
+                        
+                        li {
+                            background-size: 16px auto;
+                            font-size: 15px;
+                            padding: 8px 15px 8px 25px;
+                            line-height: 1.4;
+                            margin-bottom: 5px;
+                        }
+                    }
+                    
+                    .sentence {
+                        margin: 0;
+                        text-align: left; // 本文は左揃え
+                        
+                        p {
+                            line-height: 1.8;
+                            font-size: 14px;
+                            padding: 8px 0;
+
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+/* 767px responsive-closed */

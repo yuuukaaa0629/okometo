@@ -1,0 +1,523 @@
+.contact {
+    position: relative;
+    min-height: 100vh;
+    padding: 0;
+    background-color: #F5F5F5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow-x: hidden;
+    overflow-y: visible;
+
+    /* 背景メディア部分はそのまま */
+    .video-background {
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+        overflow: hidden;
+
+        &::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: url('../../images/logo.png') repeat;
+            opacity: 0.02;
+            z-index:0;
+        }
+
+        &::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                135deg,
+                rgba(45, 80, 22, 0.08) 0%,
+                rgba(0, 0, 0, 0.15) 50%,
+                rgba(139, 69, 19, 0.05) 100%
+            );
+            z-index: 1;
+        }
+
+        img,
+        video {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            display: block;
+            transition: opacity 0.35s ease;
+        }
+
+        img { opacity: 1; z-index: 1; }
+        video {
+            opacity: 0;
+            z-index: 1;
+            filter: blur(0.3px);
+            animation: slowZoom 25s ease-in-out infinite alternate;
+            transform-origin: center center;
+        }
+
+        &.has-video {
+            video { opacity: 1; }
+            img   { opacity: 0; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            video {
+                animation: none;
+                opacity: 0 !important;
+            }
+            img {
+                opacity: 1 !important;
+            }
+        }
+    }
+
+    .container {
+        position: relative;
+        z-index: 3;
+        width: 100%;
+        /* height: 100vh; ←やめる */
+        height: auto;
+        min-height: 100dvh; /* 100vhよりモバイルで安全 */
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        padding-right: 8vw;
+    }
+
+    .contact-actions {
+        position: relative;
+        width: 420px;
+        max-width: 85vw;
+        padding: 35px 25px;
+        border-radius: 20px;
+        
+        background: rgba(255, 255, 255, 0.08);
+        border: 1.5px solid rgba(255, 255, 255, 0.25);
+        box-shadow: 
+            0 20px 40px rgba(0, 0, 0, 0.12),
+            inset 0 1px 0 rgba(255, 255, 255, 0.3);
+        backdrop-filter: blur(15px);
+        -webkit-backdrop-filter: blur(15px);
+        
+        animation: floatUp 4s ease-in-out infinite alternate;
+
+        .panel-title {
+            margin: 0 0 30px;
+            text-align: center;
+            font-size: 24px;
+            line-height: 1.3;
+            font-weight: 800;
+            color: rgba(255, 255, 255, 0.95);
+            letter-spacing: .05em;
+            text-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+            position: relative;
+
+            &::after {
+                content: '';
+                display: block;
+                width: 50px;
+                height: 2px;
+                margin: 12px auto 0;
+                background: linear-gradient(90deg, 
+                    rgba(255, 255, 255, 0.7) 0%, 
+                    rgba(255, 255, 255, 0.3) 100%
+                );
+                border-radius: 2px;
+            }
+        }
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 18px;
+        pointer-events: auto;
+
+        // アイコン画像をさらに大きく＋エフェクト強化
+        img {
+            width: 48px !important; // 大幅サイズアップ
+            height: 48px !important;
+            max-width: none !important;
+            max-height: none !important;
+            object-fit: contain;
+            display: block;
+            flex: 0 0 auto;
+            filter: brightness(1.3) contrast(1.15) saturate(1.1);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            z-index: 3;
+        }
+
+        a {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            gap: 24px; // ギャップを拡大
+            width: 100%;
+            min-height: 80px;
+            padding: 20px 26px;
+            border-radius: 16px;
+            text-decoration: none;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.95);
+
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+
+            // ホバー時のリップル効果
+            &::before {
+                content: '';
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                width: 0;
+                height: 0;
+                background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, transparent 70%);
+                border-radius: 50%;
+                transform: translate(-50%, -50%);
+                transition: all 0.6s ease;
+                opacity: 0;
+            }
+
+            &:hover {
+                background: rgba(255, 255, 255, 0.15);
+                border-color: rgba(255, 255, 255, 0.35);
+                transform: translateY(-3px) scale(1.02);
+                box-shadow: 0 12px 24px rgba(0, 0, 0, 0.18);
+
+                &::before {
+                    width: 200px;
+                    height: 200px;
+                    opacity: 1;
+                }
+            }
+
+            &:active {
+                transform: translateY(-1px) scale(1.01);
+                box-shadow: 0 6px 12px rgba(0, 0, 0, 0.12);
+            }
+
+            // アイコンコンテナ - 枠なし、余白なし
+            .icon {
+                flex: 0 0 auto;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 48px; // アイコンサイズと同じ
+                height: 48px;
+                position: relative;
+                z-index: 2;
+                transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+
+                // 背景や枠は一切なし
+                background: none;
+                border: none;
+                box-shadow: none;
+
+                // グロー効果（光る輪郭）
+                &::before {
+                    content: '';
+                    position: absolute;
+                    inset: -8px;
+                    border-radius: 50%;
+                    background: radial-gradient(circle, 
+                        rgba(255, 255, 255, 0.3) 0%,
+                        rgba(255, 255, 255, 0.1) 30%,
+                        transparent 60%
+                    );
+                    opacity: 0;
+                    transition: all 0.4s ease;
+                    z-index: -1;
+                }
+
+                // キラキラ効果（光の粒子）
+                &::after {
+                    content: '';
+                    position: absolute;
+                    inset: -12px;
+                    border-radius: 50%;
+                    background: conic-gradient(
+                        from 0deg,
+                        transparent 0deg,
+                        rgba(255, 255, 255, 0.4) 90deg,
+                        transparent 180deg,
+                        rgba(255, 255, 255, 0.4) 270deg,
+                        transparent 360deg
+                    );
+                    opacity: 0;
+                    animation: spin 3s linear infinite;
+                    z-index: -1;
+                }
+
+                img {
+                    position: relative;
+                    z-index: 3;
+                    // 強力なドロップシャドウで存在感アップ
+                    filter: 
+                        brightness(1.3) 
+                        contrast(1.2) 
+                        saturate(1.15)
+                        drop-shadow(0 4px 8px rgba(0, 0, 0, 0.4))
+                        drop-shadow(0 0 12px rgba(255, 255, 255, 0.3));
+                }
+            }
+
+            &:hover .icon {
+                transform: scale(1.25) rotate(8deg);
+
+                &::before {
+                    opacity: 1;
+                    inset: -16px;
+                }
+
+                &::after {
+                    opacity: 1;
+                    animation-duration: 1.5s;
+                }
+
+                img {
+                    filter: 
+                        brightness(1.5) 
+                        contrast(1.3) 
+                        saturate(1.3)
+                        drop-shadow(0 6px 12px rgba(0, 0, 0, 0.5))
+                        drop-shadow(0 0 20px rgba(255, 255, 255, 0.6));
+                }
+            }
+
+            .catch {
+                flex: 1;
+                text-align: left;
+                z-index: 2;
+                
+                p {
+                    font-size: 17px;
+                    font-weight: 700;
+                    color: inherit;
+                    letter-spacing: 0.02em;
+                    margin: 0;
+                    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+                    transition: all 0.3s ease;
+                }
+            }
+
+            &:hover .catch p {
+                transform: translateX(6px);
+                text-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+            }
+        }
+
+        .netShop:hover .icon {
+            &::before {
+                background: radial-gradient(circle, 
+                    rgba(255, 159, 28, 0.35) 0%,
+                    rgba(255, 159, 28, 0.13) 40%,
+                    rgba(255, 159, 28, 0.05) 70%,
+                    transparent 90%,
+                    transparent 100%
+                );
+                mask-image: radial-gradient(circle, rgba(0,0,0,1) 70%, rgba(0,0,0,0) 100%);
+                -webkit-mask-image: radial-gradient(circle, rgba(0,0,0,1) 70%, rgba(0,0,0,0) 100%);
+            }
+            &::after {
+                background: conic-gradient(
+                    from 0deg,
+                    transparent 0deg,
+                    rgba(255, 159, 28, 0.45) 90deg,
+                    transparent 180deg,
+                    rgba(255, 159, 28, 0.45) 270deg,
+                    transparent 360deg
+                );
+                mask-image: radial-gradient(circle, rgba(0,0,0,1) 70%, rgba(0,0,0,0) 100%);
+                -webkit-mask-image: radial-gradient(circle, rgba(0,0,0,1) 70%, rgba(0,0,0,0) 100%);
+            }
+        }
+
+        // 各ボタンに個別のグロー効果（縁の外側はフェードアウト）
+        .amazon:hover .icon {
+            &::before {
+                background: radial-gradient(circle, 
+                    rgba(0, 200, 83, 0.35) 0%,   // 緑系（BASEのイメージ）
+                    rgba(0, 200, 83, 0.13) 40%,
+                    rgba(0, 200, 83, 0.05) 70%,
+                    transparent 90%,
+                    transparent 100%
+                );
+                mask-image: radial-gradient(circle, rgba(0,0,0,1) 70%, rgba(0,0,0,0) 100%);
+                -webkit-mask-image: radial-gradient(circle, rgba(0,0,0,1) 70%, rgba(0,0,0,0) 100%);
+            }
+            &::after {
+                background: conic-gradient(
+                    from 0deg,
+                    transparent 0deg,
+                    rgba(0, 200, 83, 0.45) 90deg,
+                    transparent 180deg,
+                    rgba(0, 200, 83, 0.45) 270deg,
+                    transparent 360deg
+                );
+                mask-image: radial-gradient(circle, rgba(0,0,0,1) 70%, rgba(0,0,0,0) 100%);
+                -webkit-mask-image: radial-gradient(circle, rgba(0,0,0,1) 70%, rgba(0,0,0,0) 100%);
+            }
+        }
+
+        .instagram:hover .icon {
+            &::before {
+                background: radial-gradient(circle, 
+                    rgba(225, 48, 108, 0.35) 0%,
+                    rgba(225, 48, 108, 0.13) 40%,
+                    rgba(225, 48, 108, 0.05) 70%,
+                    transparent 90%,
+                    transparent 100%
+                );
+                mask-image: radial-gradient(circle, rgba(0,0,0,1) 70%, rgba(0,0,0,0) 100%);
+                -webkit-mask-image: radial-gradient(circle, rgba(0,0,0,1) 70%, rgba(0,0,0,0) 100%);
+            }
+            &::after {
+                background: conic-gradient(
+                    from 0deg,
+                    transparent 0deg,
+                    rgba(225, 48, 108, 0.45) 90deg,
+                    transparent 180deg,
+                    rgba(225, 48, 108, 0.45) 270deg,
+                    transparent 360deg
+                );
+                mask-image: radial-gradient(circle, rgba(0,0,0,1) 70%, rgba(0,0,0,0) 100%);
+                -webkit-mask-image: radial-gradient(circle, rgba(0,0,0,1) 70%, rgba(0,0,0,0) 100%);
+            }
+        }
+
+        .email:hover .icon {
+            &::before {
+                background: radial-gradient(circle, 
+                    rgba(66, 165, 245, 0.35) 0%,
+                    rgba(66, 165, 245, 0.13) 40%,
+                    rgba(66, 165, 245, 0.05) 70%,
+                    transparent 90%,
+                    transparent 100%
+                );
+                mask-image: radial-gradient(circle, rgba(0,0,0,1) 70%, rgba(0,0,0,0) 100%);
+                -webkit-mask-image: radial-gradient(circle, rgba(0,0,0,1) 70%, rgba(0,0,0,0) 100%);
+            }
+            &::after {
+                background: conic-gradient(
+                    from 0deg,
+                    transparent 0deg,
+                    rgba(66, 165, 245, 0.45) 90deg,
+                    transparent 180deg,
+                    rgba(66, 165, 245, 0.45) 270deg,
+                    transparent 360deg
+                );
+                mask-image: radial-gradient(circle, rgba(0,0,0,1) 70%, rgba(0,0,0,0) 100%);
+                -webkit-mask-image: radial-gradient(circle, rgba(0,0,0,1) 70%, rgba(0,0,0,0) 100%);
+            }
+        }
+
+        @media screen and (max-width: 1024px) {
+            .container {
+                justify-content: center;
+                padding-right: 0;
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            width: 380px;
+            max-width: 90vw;
+            padding: 25px 18px;
+
+            .panel-title {
+                font-size: 22px;
+                margin-bottom: 25px;
+            }
+
+            a {
+                min-height: 75px;
+                padding: 16px 20px;
+                gap: 20px;
+
+                .icon {
+                    width: 40px;
+                    height: 40px;
+                }
+
+                .catch p {
+                    font-size: 16px;
+                }
+            }
+
+            img {
+                width: 40px !important;
+                height: 40px !important;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            width: 100%;
+            max-width: calc(100vw - 32px);
+            margin: 0 16px;
+        }
+    }
+}
+
+// 回転アニメーション
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@keyframes floatUp {
+    0%   { 
+        transform: translateY(0px);
+        opacity: 0.95;
+    }
+    100% { 
+        transform: translateY(-6px);
+        opacity: 1;
+    }
+}
+
+@keyframes slowZoom {
+    0%   { transform: scale(1); }
+    100% { transform: scale(1.03); }
+}
+
+/* ネスト場所を修正（.contact-actionsの外に） */
+@media screen and (max-width: 1024px) {
+    .contact .container {
+      justify-content: center;
+      padding-right: 0;
+    }
+  }
+  
+
+/* ID/クラスを実DOMに合わせて統一（例：.contactに合わせる）*/
+@media (max-width: 768px) {
+    .contact {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100dvh;
+      padding-right: 0 !important;
+    }
+    .contact .contact-container {
+      margin: 0 auto;
+      text-align: center;
+      max-width: 100%;
+    }
+    .contact .contact-links {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 15px;
+    }
+  }
+  

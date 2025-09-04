@@ -1,0 +1,347 @@
+@charset "utf-8";
+/*===================================================================================================
+□ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ 
+
+〇 FLOW 〇
+
+□ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ 
+====================================================================================================*/
+
+.flow{
+    overflow: hidden;
+    padding: 60px 0 60px 0;
+    .container{
+        .title{
+            h3{
+                .catch{
+                    text-align: center;
+                    font-family: 'Shippori Mincho';
+                    font-weight: 500;
+                    line-height: 1.0;
+                    letter-spacing: 10px;
+                    font-size: 90px;
+                }
+            }
+            h2{
+                margin: 10px 0 0 0;
+                .catch{
+                    text-align: center;
+                    line-height: 1.25;
+                    font-weight: 600;
+                    font-size: 24px;
+                }
+            }
+        }
+        .box-wrapper{
+            max-width: 1680px;
+            width: 96%;
+            margin: 80px auto 0;
+            display: flex;
+            align-items: stretch;
+            flex-wrap: wrap;
+            justify-content: center;
+            .box{  
+                position: relative;
+                background: $grade-slight;
+                box-shadow: $box-shadow-main;
+                margin: 30px 0 0 0;
+                width: 45%;
+                .inner{
+                    display: flex;
+                    align-items: center;
+                    padding: 30px 45px 30px 45px;
+                
+                    .number{
+                        background-color: #b8c6db;
+                        background-image: linear-gradient(315deg, #b8c6db 0%, #f5f7fa 74%);
+                        box-shadow: $box-shadow-main;
+                        width: 100px;
+                        height: 100px;
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                        justify-content: center;
+                        color:#757485;
+                        top:-20px;
+                        p{
+                            font-family: 'Shippori Mincho';
+                            font-weight: 600;
+                            text-align: center;
+                            line-height: 1.2;
+                            &.sub{
+                                font-size:20px;
+                            }
+                            &.main{
+                                font-size:30px;
+                            }
+                        }
+                    }
+                    .text{
+                        width: calc(100% - 100px);
+                        padding: 0 0 0 45px;
+                        h3{
+                            .catch{
+                                font-size: 30px;
+                            }
+                        }
+                        .sentence{
+                            margin: 10px 0 0 0;
+                            p{
+                                color: #343434;
+                                line-height: 1.8;
+                                padding: 10px 0 10px 0;
+                                font-size: 18px;
+                            }
+                        }
+                    }
+                }
+            }
+            .arrow{
+                width: 5%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                img{
+                    transform: rotate(-90deg);
+                }
+            }
+        }
+    }
+}
+
+/**********************************************************************************
+□ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □  
+
+◆	Stylesheet: 1024px～1280px(iPad縦からiPad横)までのモニタで適用	◆
+
+start----------------------------------------------------------------------------*/
+
+@media screen and (min-width: 1024px) and (max-width: 1280px) {
+    .flow{
+        padding: 60px 0 60px 0;
+        .container{
+            .title{
+                h3{
+                    .catch{
+                        line-height: 1.0;
+                        letter-spacing: 10px;
+                        font-size: 77px;
+                    }
+                }
+                h2{
+                    margin: 10px 0 0 0;
+                    .catch{
+                        line-height: 1.25;
+                        font-size: 24px;
+                    }
+                }
+            }
+            .box-wrapper{
+                max-width: 94%;
+                margin: 0 auto 0;
+                padding: 20px 0 0 0;
+                .box{
+                    margin: 50px 0 0 0;
+                    .inner{
+                        padding: 5px 30px 25px 30px;
+                        display: block;
+                        .number{
+                            width: 7vw;
+                            height: 7vw;
+                            margin:-20px auto 0;
+                            line-height: 1.2;
+                            p{
+                                &.sub{
+                                    font-size:1.85vw;
+                                }
+                                &.main{
+                                    font-size:2.5vw;
+                                }
+                            }
+                        }
+                        .text{
+                            width: calc(100% - 0%);
+                            padding: 20px 0 0 0px;
+                            h3{
+                                .catch{
+                                    font-size: 24px;
+                                    text-align: center;
+                                }
+                            }
+                            .sentence{
+                                margin: 5px 0 0 0;
+                                p{
+                                    line-height: 1.8;
+                                    padding: 10px 0 10px 0;
+                                    font-size: 1.8vw;
+                                }
+                            }
+                        }
+                    }
+                }
+                .arrow{
+                    width: 5%;
+                    margin: 0px auto 0px;
+                }
+            }
+        }
+    }
+} /* 1024px～1280px responsive-close */
+
+
+
+/**********************************************************************************
+□ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □  
+
+◆	Stylesheet: 768px～1023px(iPad縦からiPad横)までのモニタで適用	◆
+
+start----------------------------------------------------------------------------*/
+
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+    .flow{
+        padding: 60px 0 60px 0;
+        .container{
+            .title{
+                h3{
+                    .catch{
+                        line-height: 1.0;
+                        letter-spacing: 10px;
+                        font-size: 77px;
+                    }
+                }
+                h2{
+                    margin: 10px 0 0 0;
+                    .catch{
+                        line-height: 1.25;
+                        font-size: 24px;
+                    }
+                }
+            }
+            .box-wrapper{
+                max-width: 94%;
+                margin: 0 auto 0;
+                padding: 10px 0 0 0;
+                .box{
+                    margin: 50px auto 0;
+                    .inner{
+                        padding: 5px 25px 25px 25px;
+                        display: block;
+                        .number{
+                            width: 8vw;
+                            height: 8vw;
+                            margin: -20px auto 0;
+                            line-height: 1.2;
+                            p{
+                                &.sub{
+                                    font-size:2vw;
+                                }
+                                &.main{
+                                    font-size:2.5vw;
+                                }
+                            }
+                        }
+                        .text{
+                            width: calc(100% - 0px);
+                            padding: 20px 0 0 0px;
+                            h3{
+                                .catch{
+                                    font-size: 3.15vw;
+                                    text-align: center;
+                                }
+                            }
+                            .sentence{
+                                margin: 1px 0 0 0;
+                                p{
+                                    line-height: 1.8;
+                                    padding: 10px 0 10px 0;
+                                    font-size: 1.8vw;
+                                }
+                            }
+                        }
+                    }
+                }
+                .arrow{
+                    width: 5%;
+                    margin: 0px auto 0px;
+                }
+            }
+        }
+    }
+} /* 768px～1023px responsive-closed */
+
+/*end ----------------------------------------------------------------------------
+□ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ 
+**********************************************************************************/
+
+
+/**********************************************************************************
+ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ 
+
+◆	Stylesheet: 767pxまで(スマホ)のモニタで適用	◆
+
+□ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ 
+start----------------------------------------------------------------------------*/
+@media screen and (max-width: 767px) {
+    .flow{
+        padding: 60px 0 60px 0;
+        .container{
+            .box-wrapper{
+                max-width: 94%;
+                margin: 0 auto 0;
+                display: block;
+                .box{  
+                    margin: 0px auto 0;
+                    width: 100%;
+                    .inner{
+                        display: block;
+                        padding: 30px 20px 30px 20px;
+                        .number{
+                            width: 20vw;
+                            height: 20vw;
+                            top:-20px;
+                            line-height: 1.2;
+                            p{
+                                &.sub{
+                                    font-size:4vw;
+                                }
+                                &.main{
+                                    font-size:6vw;
+                                }
+                            }
+                        }
+                        .text{
+                            width: 100%;
+                            padding: 20px 0 0 0;
+                            h3{
+                                .catch{
+                                    font-size: 6vw;
+                                }
+                            }
+                            .sentence{
+                                margin: 10px 0 0 0;
+                                p{
+                                    line-height: 1.8;
+                                    padding: 10px 0 10px 0;
+                                    font-size: 4vw;
+                                }
+                            }
+                        }
+                    }
+                }
+                .arrow{
+                    width: 30vw;
+                    margin: 30px auto 30px;
+                    img{
+                        transform: rotate(0deg);
+                    }
+                }
+            }
+        }
+    }
+    
+} /* 767px responsive-closed */
+
+/*end ----------------------------------------------------------------------------
+□ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ 
+**********************************************************************************/
+
