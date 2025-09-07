@@ -76,22 +76,54 @@
 				<div class="splide" role="group" aria-label="ズームしながらフェード">
 					<div class="splide__track">
 						<div class="splide__list">
-							<div class="splide__slide">
-								<div class="thumb"><img src="./images/first-view-thumb01.jpg" alt="*" width="1400px"
-										height="1000px"></div><!-- end .thumb  -->
-							</div><!-- end .splide__slide -->
-							<div class="splide__slide">
-								<div class="thumb"><img src="./images/logo.png" alt="*" width="1000px"
-										height="1000px"></div><!-- end .thumb  -->
-							</div><!-- end .splide__slide -->
-							<div class="splide__slide">
-								<div class="thumb"><img src="./images/first-view-thumb02.jpg" alt="*" width="1400px"
-										height="1000px"></div><!-- end .thumb  -->
-							</div><!-- end .splide__slide -->
-							<div class="splide__slide">
-								<div class="thumb"><img src="./images/first-view-thumb03.jpg" alt="*" width="1400px"
-										height="1000px"></div><!-- end .thumb  -->
-							</div><!-- end .splide__slide -->
+					<div class="splide__slide">
+						<div class="thumb">
+						  <picture>
+						    <source type="image/avif" 
+						            srcset="./images/first-view-thumb01-800.avif 800w, ./images/first-view-thumb01-1200.avif 1200w, ./images/first-view-thumb01-1400.avif 1400w" 
+						            sizes="(max-width: 767px) 92vw, 1400px">
+						    <source type="image/webp" 
+						            srcset="./images/first-view-thumb01-800.webp 800w, ./images/first-view-thumb01-1200.webp 1200w, ./images/first-view-thumb01-1400.webp 1400w" 
+						            sizes="(max-width: 767px) 92vw, 1400px">
+						    <img src="./images/first-view-thumb01.jpg" alt="田んぼの風景" width="1400" height="1000" loading="eager" fetchpriority="high" decoding="async">
+						  </picture>
+						</div>
+					</div><!-- end .splide__slide -->
+					<div class="splide__slide">
+						<div class="thumb">
+						  <picture>
+						    <source type="image/avif" srcset="./images/logo-800.avif 800w, ./images/logo-1000.avif 1000w" sizes="(max-width: 767px) 70vw, 1000px">
+						    <source type="image/webp" srcset="./images/logo-800.webp 800w, ./images/logo-1000.webp 1000w" sizes="(max-width: 767px) 70vw, 1000px">
+						    <img src="./images/logo.png" alt="お米と・・・ロゴ" width="1000" height="1000" loading="lazy" decoding="async">
+						  </picture>
+						</div>
+					</div><!-- end .splide__slide -->
+					<div class="splide__slide">
+						<div class="thumb">
+						  <picture>
+						    <source type="image/avif" 
+						            srcset="./images/first-view-thumb02-800.avif 800w, ./images/first-view-thumb02-1200.avif 1200w, ./images/first-view-thumb02-1400.avif 1400w" 
+						            sizes="(max-width: 767px) 92vw, 1400px">
+						    <source type="image/webp" 
+						            srcset="./images/first-view-thumb02-800.webp 800w, ./images/first-view-thumb02-1200.webp 1200w, ./images/first-view-thumb02-1400.webp 1400w" 
+						            sizes="(max-width: 767px) 92vw, 1400px">
+						    <img src="./images/first-view-thumb02.png" alt="父と母" width="1400" height="1000" loading="lazy" decoding="async">
+						  </picture>
+						</div>
+					</div><!-- end .splide__slide -->
+					<div class="splide__slide">
+						<div class="thumb">
+						  <picture>
+						    <source type="image/avif" 
+						            srcset="./images/first-view-thumb03-800.avif 800w, ./images/first-view-thumb03-1200.avif 1200w, ./images/first-view-thumb03-1400.avif 1400w" 
+						            sizes="(max-width: 767px) 92vw, 1400px">
+						    <source type="image/webp" 
+						            srcset="./images/first-view-thumb03-800.webp 800w, ./images/first-view-thumb03-1200.webp 1200w, ./images/first-view-thumb03-1400.webp 1400w" 
+						            sizes="(max-width: 767px) 92vw, 1400px">
+						    <img src="./images/first-view-thumb03.jpg" alt="祖父と祖母" width="1400" height="1000" loading="lazy" decoding="async">
+						  </picture>
+						</div>
+					</div><!-- end .splide__slide -->
 						</div><!-- end .splide__list-->
 					</div><!-- end .splide__track-->
 				</div><!-- end .splide -->
@@ -138,7 +170,13 @@
 					<div class="splide__track">
 						<ul class="splide__list">
 							<li class="splide__slide">
-								<div class="thumb"><img src="./images/stories01-tanemaki.png" alt="*"></div>
+								<div class="thumb">
+									<picture>
+  										<source type="image/avif" srcset="./images/stories01-tanemaki-400.avif 400w, ./images/stories01-tanemaki-800.avif 800w" sizes="(max-width: 767px) 70vw, 400px">
+  										<source type="image/webp" srcset="./images/stories01-tanemaki-400.webp 400w, ./images/stories01-tanemaki-800.webp 800w" sizes="(max-width: 767px) 70vw, 400px">
+  										<img src="./images/stories01-tanemaki.png" alt="種まきと苗づくりの様子" loading="lazy" decoding="async" fetchpriority="low">
+									</picture>
+								</div>
 								<!-- end .stories-thumb -->
 								<div class="text">
 									<div class="category">
@@ -153,7 +191,13 @@
 								</div><!-- end .text -->
 							</li>
 							<li class="splide__slide">
-								<div class="thumb"><img src="./images/stories02-dojyouzukuri.png" alt="*"></div>
+								<div class="thumb">
+									<picture>
+  										<source type="image/avif" srcset="./images/stories02-dojyouzukuri-400.avif 400w, ./images/stories02-dojyouzukuri-800.avif 800w" sizes="(max-width: 767px) 70vw, 400px">
+  										<source type="image/webp" srcset="./images/stories02-dojyouzukuri-400.webp 400w, ./images/stories02-dojyouzukuri-800.webp 800w" sizes="(max-width: 767px) 70vw, 400px">
+  										<img src="./images/stories02-dojyouzukuri.png" alt="土壌づくりの風景" loading="lazy" decoding="async" fetchpriority="low">
+									</picture>
+								</div>
 								<!-- end .stories-thumb -->
 								<div class="text">
 									<div class="category">
@@ -168,7 +212,13 @@
 								</div><!-- end .text -->
 							</li>
 							<li class="splide__slide">
-								<div class="thumb"><img src="./images/stories03-taue.png" alt="*"></div>
+								<div class="thumb">
+									<picture>
+  										<source type="image/avif" srcset="./images/stories03-taue-400.avif 400w, ./images/stories03-taue-800.avif 800w" sizes="(max-width: 767px) 70vw, 400px">
+  										<source type="image/webp" srcset="./images/stories03-taue-400.webp 400w, ./images/stories03-taue-800.webp 800w" sizes="(max-width: 767px) 70vw, 400px">
+  										<img src="./images/stories03-taue.png" alt="田植えの様子" loading="lazy" decoding="async" fetchpriority="low">
+									</picture>
+								</div>
 								<!-- end .stories-thumb -->
 								<div class="text">
 									<div class="category">
@@ -183,7 +233,12 @@
 								</div><!-- end .text -->
 							</li>
 							<li class="splide__slide">
-								<div class="thumb"><img src="./images/stories04-nouyakusanpu.png" alt="*"></div>
+								<div class="thumb">
+									<picture>
+  										<source type="image/avif" srcset="./images/stories04-nouyakusanpu-400.avif 400w, ./images/stories04-nouyakusanpu-800.avif 800w" sizes="(max-width: 767px) 70vw, 400px">
+  										<source type="image/webp" srcset="./images/stories04-nouyakusanpu-400.webp 400w, ./images/stories04-nouyakusanpu-800.webp 800w" sizes="(max-width: 767px) 70vw, 400px">
+  										<img src="./images/stories04-nouyakusanpu.png" alt="育成と手入れの作業" loading="lazy" decoding="async" fetchpriority="low">
+									</picture></div>
 								<!-- end .stories-thumb -->
 								<div class="text">
 									<div class="category">
@@ -198,7 +253,12 @@
 								</div><!-- end .text -->
 							</li>
 							<li class="splide__slide">
-								<div class="thumb"><img src="./images/stories05-inekari.png" alt="*"></div>
+								<div class="thumb">
+									<picture>
+ 	 									<source type="image/avif" srcset="./images/stories05-inekari-400.avif 400w, ./images/stories05-inekari-800.avif 800w" sizes="(max-width: 767px) 70vw, 400px">
+  										<source type="image/webp" srcset="./images/stories05-inekari-400.webp 400w, ./images/stories05-inekari-800.webp 800w" sizes="(max-width: 767px) 70vw, 400px">
+  										<img src="./images/stories05-inekari.png" alt="稲刈りの収穫風景" loading="lazy" decoding="async" fetchpriority="low">
+									</picture></div>
 								<!-- end .stories-thumb -->
 								<div class="text">
 									<div class="category">
@@ -213,7 +273,12 @@
 								</div><!-- end .text -->
 							</li>
 							<li class="splide__slide">
-								<div class="thumb"><img src="./images/stories06-konnpou.png" alt="*"></div>
+								<div class="thumb">
+									<picture>
+  										<source type="image/avif" srcset="./images/stories06-konnpou-400.avif 400w, ./images/stories06-konnpou-800.avif 800w" sizes="(max-width: 767px) 70vw, 400px">
+  										<source type="image/webp" srcset="./images/stories06-konnpou-400.webp 400w, ./images/stories06-konnpou-800.webp 800w" sizes="(max-width: 767px) 70vw, 400px">
+  										<img src="./images/stories06-konnpou.png" alt="精米と発送の様子" loading="lazy" decoding="async" fetchpriority="low">
+									</picture></div>
 								<!-- end .stories-thumb -->
 								<div class="text">
 									<div class="category">
@@ -251,7 +316,13 @@
 						<div class="catch">季節・土地にあった<br>品種を栽培</div><!-- end .catch -->
 					</h2>
 				</div><!-- end .text -->
-				<div class="thumb"><img src="./images/charm-title-thumb.jpg" alt="*"></div><!-- end .thumb -->
+				<div class="thumb">
+					<picture>
+  						<source type="image/avif" srcset="./images/charm-title-thumb-800.avif 800w, ./images/charm-title-thumb-1200.avif 1200w" sizes="(max-width: 767px) 92vw, 1200px">
+  						<source type="image/webp" srcset="./images/charm-title-thumb-800.webp 800w, ./images/charm-title-thumb-1200.webp 1200w" sizes="(max-width: 767px) 92vw, 1200px">
+  						<img src="./images/charm-title-thumb.jpg" alt="我が家の魅力セクションのイメージ" loading="lazy" decoding="async" fetchpriority="low">
+					</picture>
+				</div><!-- end .thumb -->
 			</div><!-- end .title -->
 			<div class="box-wrapper anchor-section">
 				<div class="box">
@@ -260,7 +331,11 @@
 							<div class="rice-type">
 								<p>早期米</p>
 							</div><!-- end .rice-type -->
-							<img src="./images/charm-box-thumb01.jpg" alt="*">
+							<picture>
+  								<source type="image/avif" srcset="./images/charm-box-thumb01-400.avif 400w, ./images/charm-box-thumb01-800.avif 800w" sizes="(max-width: 767px) 92vw, 480px">
+  								<source type="image/webp" srcset="./images/charm-box-thumb01-400.webp 400w, ./images/charm-box-thumb01-800.webp 800w" sizes="(max-width: 767px) 92vw, 480px">
+  								<img src="./images/charm-box-thumb01.jpg" alt="早期米コシヒカリのイメージ" loading="lazy" decoding="async" fetchpriority="low">
+							</picture>
 						</div><!-- end .thumb -->
 						<div class="text">
 							<div class="en">
@@ -274,7 +349,7 @@
 								<li>炊きたての香りと粘りが際立つ</li>
 								<li>収穫したてを精米して直送</li>
 							</ul>
-							<div class="geometory"><img src="./images/charm-box-geometory01.png" alt="*"></div>
+							<div class="geometory"><img src="./images/charm-box-geometory01.png" alt="*" loading="lazy" decoding="async"></div>
 							<!-- end .geometory -->
 						</div><!-- end .text-->
 					</div><!-- end .top -->
@@ -291,7 +366,11 @@
 							<div class="rice-type">
 								<p>普通米</p>
 							</div><!-- end .rice-type -->
-							<img src="./images/charm-box-thumb02.jpg" alt="*">
+							<picture>
+  								<source type="image/avif" srcset="./images/charm-box-thumb02-400.avif 400w, ./images/charm-box-thumb02-800.avif 800w" sizes="(max-width: 767px) 92vw, 480px">
+  								<source type="image/webp" srcset="./images/charm-box-thumb02-400.webp 400w, ./images/charm-box-thumb02-800.webp 800w" sizes="(max-width: 767px) 92vw, 480px">
+  								<img src="./images/charm-box-thumb02.jpg" alt="ヒノヒカリのイメージ" loading="lazy" decoding="async" fetchpriority="low">
+							</picture>
 						</div><!-- end .thumb -->
 						<div class="text">
 							<div class="en">
@@ -305,7 +384,7 @@
 								<li>炊き上がりはふっくらツヤツヤ</li>
 								<li>冷めても味が落ちず、お弁当にも最適</li>
 							</ul>
-							<div class="geometory"><img src="./images/charm-box-geometory01.png" alt="*"></div>
+							<div class="geometory"><img src="./images/charm-box-geometory01.png" alt="*" loading="lazy" decoding="async"></div>
 							<!-- end .geometory -->
 						</div><!-- end .text-->
 					</div><!-- end .top -->
@@ -322,7 +401,11 @@
 							<div class="rice-type">
 								<p>餅米</p>
 							</div><!-- end .rice-type -->
-							<img src="./images/charm-box-thumb03.png" alt="*">
+							<picture>
+  								<source type="image/avif" srcset="./images/charm-box-thumb03-400.avif 400w, ./images/charm-box-thumb03-800.avif 800w" sizes="(max-width: 767px) 92vw, 480px">
+  								<source type="image/webp" srcset="./images/charm-box-thumb03-400.webp 400w, ./images/charm-box-thumb03-800.webp 800w" sizes="(max-width: 767px) 92vw, 480px">
+  								<img src="./images/charm-box-thumb03.png" alt="ヒヨクモチのイメージ" loading="lazy" decoding="async" fetchpriority="low">
+							</picture>
 						</div><!-- end .thumb -->
 						<div class="text">
 							<div class="en">
@@ -336,7 +419,7 @@
 								<li>お赤飯や山菜おこわで際立つ、もち米100%の旨み</li>
 								<li>冷めてもやわらか。おはぎ・雑煮・餅菓子づくりにも最適</li>
 							</ul>
-							<div class="geometory"><img src="./images/charm-box-geometory01.png" alt="*"></div>
+							<div class="geometory"><img src="./images/charm-box-geometory01.png" alt="*" loading="lazy" decoding="async"></div>
 							<!-- end .geometory -->
 						</div><!-- end .text-->
 					</div><!-- end .box-top -->
@@ -354,7 +437,13 @@
 
 	<!-------------------------- ▼ message // start -------------------------->
 	<section id="message" class="navbar-offset message">
-		<div class="bg-image"><img src="./images/message-bg.jpg" alt="*" width="1600" height="1200"></div>
+		<div class="bg-image">
+			<picture>
+  				<source type="image/avif" srcset="./images/message-bg-800.avif 800w, ./images/message-bg-1200.avif 1200w, ./images/message-bg-1600.avif 1600w" sizes="(max-width: 767px) 100vw, 1600px">
+  				<source type="image/webp" srcset="./images/message-bg-800.webp 800w, ./images/message-bg-1200.webp 1200w, ./images/message-bg-1600.webp 1600w" sizes="(max-width: 767px) 100vw, 1600px">
+  				<img src="./images/message-bg.jpg" alt="メッセージ背景" width="1600" height="1200" loading="lazy" decoding="async" fetchpriority="low">
+			</picture>
+		</div>
 		<!-- end .bg -->
 		<div class="bg-color"></div><!-- end .bg-color -->
 		<div class="container">
@@ -406,26 +495,26 @@
 				<source src="./videos/contact-background.mp4" type="video/mp4">
 				<source src="./videos/contact-background.webm" type="video/webm">
 				<!-- 動画がサポートされていない場合のフォールバック画像 -->
-				<img src="./images/contact-fallback.png" alt="お問い合わせ背景">
+				<img src="./images/contact-fallback.png" alt="お問い合わせ背景" loading="lazy" decoding="async">
 			</video>
 		</div>
 		<div class="container">
 			<aside class="contact-actions" role="complementary" aria-label="連絡手段">
 				<h3 class="panel-title">お問い合わせ</h3>
 				<a href="https://okometo.base.shop/" target="_blank" rel="noopener" class="netShop">
-					<div class="icon"><img src="./images/NetShop.png" alt=""></div>
+					<div class="icon"><img src="./images/NetShop.png" alt="ネットストア" loading="lazy" decoding="async"></div>
 					<div class="catch"><p>ネットストアで購入※準備中</p></div>
 				  </a>
 				<a href="https://www.amazon.co.jp/" target="_blank" rel="noopener" class="amazon">
-				  <div class="icon"><img src="./images/Amazon.png" alt=""></div>
+				  <div class="icon"><img src="./images/Amazon.png" alt="Amazon" loading="lazy" decoding="async"></div>
 				  <div class="catch"><p>Amazonで購入※準備中</p></div>
 				</a>
 				<a href="https://www.instagram.com/okometo_yori/" target="_blank" rel="noopener" class="instagram">
-				  <div class="icon"><img src="./images/Instagram.png" alt=""></div>
+				  <div class="icon"><img src="./images/Instagram.png" alt="Instagram" loading="lazy" decoding="async"></div>
 				  <div class="catch"><p>Instagramで情報発信中</p></div>
 				</a>
 			<a href="https://thebase.com/inquiry/okometo-base-shop" target="_blank" rel="noopener" class="email" aria-label="メールでのお問い合わせ">
-				<div class="icon"><img src="./images/Mail.png" alt=""></div>
+				<div class="icon"><img src="./images/Mail.png" alt="メール" loading="lazy" decoding="async"></div>
 				<div class="catch"><p>メールでのお問い合わせ</p></div>
 			</a>
 			</aside>
@@ -439,7 +528,11 @@
 		<div class="container">
 			<div class="footer-top">
 				<div class="logo">
-					<img src="./images/logo.png" alt="お米と・・・" class="plane">
+					<picture>
+					  <source type="image/avif" srcset="./images/logo-400.avif 400w, ./images/logo-800.avif 800w" sizes="(max-width: 767px) 40vw, 300px">
+					  <source type="image/webp" srcset="./images/logo-400.webp 400w, ./images/logo-800.webp 800w" sizes="(max-width: 767px) 40vw, 300px">
+					  <img src="./images/logo.png" alt="お米と・・・" class="plane" loading="lazy" decoding="async">
+					</picture>
 				</div>
 			</div>
 			<div class="copyright">
