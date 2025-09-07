@@ -349,6 +349,57 @@ gsap.from(".flow .container .box-wrapper .box", {
 
 // start -----------------------------------------------------------------------------------//
 //
+//      .contact の動画：ビューポートに入ったら自動で load + play（初期は軽く）
+//
+(function(){
+  if (typeof window === 'undefined' || typeof document === 'undefined') return;
+  document.addEventListener('DOMContentLoaded', function(){
+    // まずは id 指定の要素を優先、なければフォールバックで .contact 内の最初の video
+    var video = document.getElementById('contact-video')
+             || document.querySelector('.contact .video-background video');
+    if (!video) return;
+
+    // 省データ設定のユーザーは読み込みを控える
+    var reduceData = window.matchMedia && window.matchMedia('(prefers-reduced-data: reduce)').matches;
+    if (reduceData) return;
+
+    // 初期ロードを抑制（HTML側の preload="none" を念のため上書き）
+    try { video.preload = 'none'; } catch(e){}
+
+    var loaded = false;
+    function loadAndPlay(){
+      if (loaded) return;
+      loaded = true;
+      try { video.load(); } catch(e){}
+      var p = video.play();
+      if (p && typeof p.catch === 'function') { p.catch(function(){ /* autoplay block ignored */ }); }
+    }
+
+    // 既に画面内にあるなら即時開始
+    var rect = video.getBoundingClientRect();
+    var inView = rect.top < (window.innerHeight || document.documentElement.clientHeight) && rect.bottom > 0;
+    if (inView) {
+      loadAndPlay();
+      return;
+    }
+
+    // IntersectionObserver で 20% 可視になったら開始
+    var observer = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if (entry.isIntersecting && entry.intersectionRatio >= 0.2) {
+          loadAndPlay();
+          observer.unobserve(video);
+        }
+      });
+    }, { threshold: [0, 0.2, 0.5, 1] });
+
+    observer.observe(video);
+  });
+})();
+
+
+// start -----------------------------------------------------------------------------------//
+//
 //			.footerのアニメーション
 //
 
@@ -372,7 +423,4 @@ const footerAnimation = gsap.timeline({
     start: 'top 45%',
   },
 });
-
-
-
 
