@@ -3,7 +3,6 @@
 /*============================================
 	― 変数設定
 =============================================*/
-@import url(/Users/yuka/works/okometo/css/vendors/reset.css);
 @font-face {
   font-family: 'Shippori Mincho';
   src: url("../webfonts/Subset-ShipporiMincho-Medium.woff2") format("woff2"), url("../webfonts/Subset-ShipporiMincho-Medium.woff") format("woff");
@@ -3455,7 +3454,6 @@ start---------------------------------------------------------------------------
 }
 
 .footer .copyright small {
-  font-family: "Shippori Mincho";
   font-weight: 400;
   font-size: 10px;
   color: #333;

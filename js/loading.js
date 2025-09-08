@@ -40,8 +40,7 @@ function loadingAnimation() {
 function navbarAnimation() {
   const tl = gsap.timeline();
 
-  tl.from(".navbar .logo", { autoAlpha: 0, x: -100, filter: "blur(30px)" })
-    .from(".navbar nav ul li", { autoAlpha: 0, y: 60, stagger: 0.1 }, "<");
+  tl.from(".navbar nav ul li", { autoAlpha: 0, y: 60, stagger: 0.1 }, "<");
 
   return tl;
 }

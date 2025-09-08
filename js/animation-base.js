@@ -209,20 +209,19 @@ function splitAndAnimate(selector, staggerDelay) {
 //			.messageのアニメーション
 //
 
-const messageAnimation = gsap.timeline({
-	scrollTrigger: {
-		trigger: ".message",
-		start: 'top 60%',
-	},
-});
+// const messageAnimation = gsap.timeline({
+// 	scrollTrigger: {
+// 		trigger: ".message",
+// 		start: 'top 60%',
+// 	},
+// });
   
-messageAnimation
-.from(".message .bg-image", { autoAlpha: 0, duration: 1.0 })
-.from(".message .bg-color", { autoAlpha: 0, yPercent: 100, transformOrigin: "center bottom" }, "<=1")
-.from(".message .back p", { autoAlpha: 0, y: -100 }, "<=0.1")
-.from(".message .container .mark-wrapper ul li", { autoAlpha: 0, y: 100, stagger: 0.2 }, "<")
-.add(splitAndAnimate(".message .container .text h2", 0.04), "<")
-.add(splitAndAnimate(".message .container .text .sentence", 0.01), "<=0.15")
+// messageAnimation
+// .from(".message .bg-image", { autoAlpha: 0, duration: 1.0 })
+// .from(".message .bg-color", { autoAlpha: 0, yPercent: 100, transformOrigin: "center bottom" }, "<=1")
+// .from(".message .container .mark-wrapper ul li", { autoAlpha: 0, y: 100, stagger: 0.2 }, "<")
+// .add(splitAndAnimate(".message .container .text h2", 0.04), "<")
+// .add(splitAndAnimate(".message .container .text .sentence", 0.01), "<=0.15")
 
 
 
@@ -241,7 +240,6 @@ const storiesAnimation= gsap.timeline({
 });
 
 storiesAnimation
-.from(".stories .bg", { autoAlpha: 0, filter: "blur(30px)", x:100, y:100, duration:1.75})
 .from(".stories .title h3",{ autoAlpha: 0, y:-50 },"<=0.5")
 .from(".stories .title h2",{ autoAlpha: 0, y:50 },"<=0.1")
 .from(".stories .splide",{ autoAlpha: 0, y:100, duration:1.5 },"<=1")
