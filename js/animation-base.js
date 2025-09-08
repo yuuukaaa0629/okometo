@@ -277,10 +277,10 @@ const charmBoxes = gsap.utils.toArray(".charm .container .box-wrapper .box");
 // 各ボックスに対してアニメーションを設定
 charmBoxes.forEach((target) => {
   // 子要素の取得
-  const thumb = target.querySelector(".top .thumb");
-  const textElements = target.querySelectorAll(".top .text .en, .top .text h3");
-  const textLi = target.querySelectorAll(".top .text ul li");
-  const geometory = target.querySelector(".top .text .geometory");
+  const thumb = target.querySelector(".box-top .thumb");
+  const textElements = target.querySelectorAll(".box-top .text .en, .box-top .text h3");
+  const textLi = target.querySelectorAll(".box-top .text ul li");
+  const geometory = target.querySelector(".box-top .text .geometory");
   const sentence = target.querySelector(".bottom .sentence");
 
   // タイムラインの作成とデフォルト設定
@@ -305,43 +305,6 @@ charmBoxes.forEach((target) => {
     .from(textLi, { x: 100, stagger: 0.1 }, "-=0.5")
     .from(geometory, { x: 100 }, "<")
     .from(sentence, { x: 100 }, "<");
-});
-
-
-// start -----------------------------------------------------------------------------------//
-//
-//			.flowのアニメーション
-//
-
-// .flowセクションのタイトルアニメーション
-const flowTitleAnimation = gsap.timeline({
-	defaults: {
-		autoAlpha: 0,
-		filter: "blur(30px)",
-		scale: 2,
-		duration: 1.15,
-	},
-	scrollTrigger: {
-		trigger: ".flow .title",
-		start: 'top 55%',
-	},
-});
-  
-flowTitleAnimation
-.from('.flow .container .title h3', {})
-.from('.flow .container .title h2', {}, "<");
-
-// .flowセクションのボックスアニメーション
-gsap.from(".flow .container .box-wrapper .box", {
-	autoAlpha: 0,
-	y: 100,
-	filter: "blur(30px)",
-	stagger: 0.3,
-	duration: 0.75,
-	scrollTrigger: {
-		trigger: ".flow .container .box-wrapper",
-		start: 'top 60%',
-	},
 });
 
 
@@ -394,31 +357,3 @@ gsap.from(".flow .container .box-wrapper .box", {
     observer.observe(video);
   });
 })();
-
-
-// start -----------------------------------------------------------------------------------//
-//
-//			.footerのアニメーション
-//
-
-// 要素の取得
-const footer = document.querySelector('.footer');
-const footerLogoPlane = footer.querySelector('.logo .plane');
-const footerLogoWhite = footer.querySelector('.logo .white');
-const footerLinks = footer.querySelectorAll('.container .top nav ul li a, .container .privacy p a, .container .copyright small');
-
-// 初期設定
-gsap.set(footer, {
-  backgroundImage: "linear-gradient(90deg, rgba(210,210,210,1) 0%, rgba(255,255,255,1) 100%)"
-});
-gsap.set(footerLinks, { color: "#111" });
-gsap.set(footerLogoWhite, { autoAlpha: 0 });
-
-// アニメーションの定義
-const footerAnimation = gsap.timeline({
-  scrollTrigger: {
-    trigger: footer,
-    start: 'top 45%',
-  },
-});
-
