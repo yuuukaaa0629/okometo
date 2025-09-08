@@ -209,19 +209,19 @@ function splitAndAnimate(selector, staggerDelay) {
 //			.messageのアニメーション
 //
 
-// const messageAnimation = gsap.timeline({
-// 	scrollTrigger: {
-// 		trigger: ".message",
-// 		start: 'top 60%',
-// 	},
-// });
+const messageAnimation = gsap.timeline({
+	scrollTrigger: {
+		trigger: ".message",
+		start: 'top 60%',
+	},
+});
   
-// messageAnimation
-// .from(".message .bg-image", { autoAlpha: 0, duration: 1.0 })
-// .from(".message .bg-color", { autoAlpha: 0, yPercent: 100, transformOrigin: "center bottom" }, "<=1")
-// .from(".message .container .mark-wrapper ul li", { autoAlpha: 0, y: 100, stagger: 0.2 }, "<")
-// .add(splitAndAnimate(".message .container .text h2", 0.04), "<")
-// .add(splitAndAnimate(".message .container .text .sentence", 0.01), "<=0.15")
+messageAnimation
+.from(".message .bg-image", { autoAlpha: 0, duration: 1.0 })
+.from(".message .bg-color", { autoAlpha: 0, yPercent: 100, transformOrigin: "center bottom" }, "<=1")
+.from(".message .container .mark-wrapper ul li", { autoAlpha: 0, y: 100, stagger: 0.2 }, "<")
+.add(splitAndAnimate(".message .container .text h2", 0.04), "<")
+.add(splitAndAnimate(".message .container .text .sentence", 0.01), "<=0.15")
 
 
 
