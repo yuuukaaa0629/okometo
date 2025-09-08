@@ -68,3 +68,17 @@ function headerAnimation() {
 
   return tl;
 }
+
+// 開始処理
+function openingEffect() {
+  const masterTimeline = gsap.timeline();
+
+  // loading → navbar → header の順で実行
+  masterTimeline
+    .add(loadingAnimation())
+    .add(navbarAnimation())
+    .add(headerAnimation());
+}
+
+// 実行
+openingEffect();
