@@ -36,7 +36,21 @@ class VideoBackground {
       this.useImageFallback();
       return;
     }
-
+    // 省データモードのユーザーは画像にフォールバック
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-data: reduce)').matches) {
+      this.useImageFallback();
+      return;
+    }
+    
+    // 画面幅に応じて poster を差し替え（<video> はレスポンシブ poster を持てないため JS で対応）
+    try {
+      const isMobile = window.matchMedia && window.matchMedia('(max-width: 767px)').matches;
+      if (isMobile) {
+        this.video.poster = './images/contact-fallback-mobile.webp';
+      } else {
+        this.video.poster = './images/contact-fallback.webp';
+      }
+    } catch (_) {}
     this.setupVideoAttributes();
     this.wireVideoEvents();
     this.setupIntersectionObserver();
@@ -48,18 +62,12 @@ class VideoBackground {
     this.video.loop = true;
     this.video.playsInline = true; // iOS Safari
     // 初期は軽量に
-    this.video.preload = 'metadata';
+    this.video.preload = 'none';
   }
 
   wireVideoEvents() {
-    // 再生可能になったら .has-video を付与してフェードイン
-    this.video.addEventListener('canplay', () => {
-      // ここでプリロードを濃く（初回インビューで play と同時に上げることもある）
-      this.video.preload = 'auto';
-      this.tryPlay(true);
-    }, { once: true });
-
     // エラーハンドリング（読み込み失敗・停滞）
+
     this.video.addEventListener('error', (e) => {
       console.error('[VideoBackground] 動画読み込みエラー:', e);
       this.useImageFallback();
@@ -78,12 +86,12 @@ class VideoBackground {
 
   setupIntersectionObserver() {
     // 画面に見えている時だけ再生
-    const options = { threshold: 0.25, rootMargin: '80px 0px' };
+    const options = { threshold: 0.1, rootMargin: '200px 0px' };
     this.observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (!this.video) return;
         if (entry.isIntersecting) {
-          // 見えたら本格プリロード + 再生
+          // 見えたら本読み込み + 再生
           this.video.preload = 'auto';
           this.tryPlay(false);
         } else {
@@ -104,16 +112,10 @@ class VideoBackground {
       }
       // 再生できていれば動画を表示
       this.container.classList.add('has-video');
-      // FPS監視を開始（低すぎれば画像に切替）
-      this.monitorPerformance();
+      // this.monitorPerformance(); // 必要になったら有効化
     } catch (err) {
-      // 自動再生がブロックされた/失敗した場合
       console.warn('[VideoBackground] 自動再生に失敗:', err && err.name ? err.name : err);
-      if (fromCanPlay) {
-        // 「再生可能」なのに再生NG → 画像へ
-        this.useImageFallback();
-      }
-      // fromCanPlay でない場合（インビュー時の再試行）も、何度か失敗したら画像へ切替したい場合はここにリトライ制御を追加
+      this.useImageFallback();
     }
   }
 
