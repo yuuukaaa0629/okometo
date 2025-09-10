@@ -11,7 +11,12 @@
     overflow: hidden;
     position: relative;
     color: $black34-color;
-    background: url(../images/stories-bg.jpg) no-repeat 0 0;
+    /* デフォルト: 1200px版 */
+    background-image: image-set(
+    url("../images/stories-bg-1600.avif") type("image/avif"),
+    url("../images/stories-bg-1600.webp") type("image/webp"),
+    url("../images/stories-bg-1600.jpg")  type("image/jpeg")
+  );
     background-size: cover;
     .bg {
         position: absolute;
@@ -305,6 +310,12 @@ start---------------------------------------------------------------------------
 start----------------------------------------------------------------------------*/
 @media screen and (max-width: 767px) {
     .stories {
+        background-image: image-set(
+            url("../images/stories-bg-800.avif") type("image/avif"),
+            url("../images/stories-bg-800.webp") type("image/webp"),
+            url("../images/stories-bg-800.jpg")  type("image/jpeg")
+        );
+
         .bg {
             left: 0;
             top: 0;

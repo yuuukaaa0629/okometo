@@ -226,8 +226,25 @@
       left: 0;
       right: 0;     
       min-height: 40px; // 高さをさらに小さく
-      padding: 0.3rem 0.7rem; // 上下の余白もさらに減らす
-      background: url('../../images/navbar-bg.jpg') center center/cover no-repeat;
+      padding: 0.3rem 0.7rem; // 上下の余白もさらに減らす;
+      /* Fallback first (legacy browsers) */
+      background: url('../../images/navbar-bg-800.jpg') center center/cover no-repeat;
+
+      /* Default for small phones (<=480px) */
+      background-image: image-set(
+        url('../../images/navbar-bg-800.avif') type('image/avif'),
+        url('../../images/navbar-bg-800.webp') type('image/webp'),
+        url('../../images/navbar-bg-800.jpg')  type('image/jpeg')
+      );
+
+      /* Larger phones & small tablets (481–960px) */
+      @media (min-width: 481px) and (max-width: 960px) {
+        background-image: image-set(
+          url('../../images/navbar-bg-1200.avif') type('image/avif'),
+          url('../../images/navbar-bg-1200.webp') type('image/webp'),
+          url('../../images/navbar-bg-1200.jpg')  type('image/jpeg')
+        );
+      }
       box-shadow: 0 10px 30px rgba(0,0,0,.12);
       flex-direction: column;
       gap: 0.4rem; // メニュー間の余白も少し減らす
