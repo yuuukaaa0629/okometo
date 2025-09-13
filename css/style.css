@@ -435,6 +435,51 @@ start---------------------------------------------------------------------------
   width: 80%;
 }
 
+.navbar nav .nav-cta .btn-cta {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 8px;
+  font-weight: 700;
+}
+
+.navbar nav .nav-cta .btn-cta .label {
+  line-height: 1;
+}
+
+.navbar nav .nav-cta .btn-cta .icon {
+  vertical-align: middle;
+}
+
+.navbar nav .nav-cta .btn-cta .icon {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  line-height: 0;
+}
+
+.navbar nav .nav-cta .btn-cta .icon svg {
+  width: 1em;
+  /* 文字サイズと同じ高さに */
+  height: 1em;
+  /* 文字サイズと同じ高さに */
+  display: block;
+}
+
+@media (max-width: 960px) {
+  .navbar nav .nav-cta .btn-cta {
+    gap: 10px;
+    /* 少し広めにして押しやすく */
+  }
+  .navbar nav .nav-cta .btn-cta .icon svg {
+    width: 1em;
+    height: 1em;
+  }
+}
+
 .navbar nav h1 {
   position: absolute;
   left: 50%;
@@ -574,12 +619,18 @@ start---------------------------------------------------------------------------
     display: none !important;
     /* 初期は必ず閉じる（JSで[data-open]時のみ開く） */
     pointer-events: none;
-    position: absolute;
-    top: var(--navbar-height, 52px);
+    position: fixed;
+    top: 0;
+    bottom: 0;
     left: 0;
     right: 0;
+    height: 100dvh;
+    /* 画面一杯に */
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
     min-height: 40px;
-    padding: 0.3rem 0.7rem;
+    padding: calc(var(--navbar-height, 52px) + 8px) 0.7rem 2.4rem;
+    /* ヘッダー高さ分を上に確保して全画面化 */
     /* Fallback first (legacy browsers) */
     background: url("../../images/navbar-bg-800.jpg") center center/cover no-repeat;
     /* Default for small phones (<=480px) */
@@ -619,6 +670,9 @@ start---------------------------------------------------------------------------
     display: flex !important;
     pointer-events: auto;
     /* ← 開いた状態ではクリック可能にする */
+    inset: 0;
+    /* 念のため四辺を固定 */
+    height: 100dvh;
   }
   .navbar .nav-list li {
     width: 100%;
