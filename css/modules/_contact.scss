@@ -21,7 +21,7 @@
             top: 0;
             left: 50%;
             transform: translateX(-50%);
-            height: 100%;              /* 縦にフィット */
+            height: 100% !important;;              /* 縦にフィット */
             width: auto;               /* 横は比率維持で自動拡張 */
             aspect-ratio: 16 / 9;      /* Vimeoの標準比率 */
             object-fit: cover;         /* 念のため */

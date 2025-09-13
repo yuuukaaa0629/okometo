@@ -2784,7 +2784,7 @@ start---------------------------------------------------------------------------
   left: 50%;
   -webkit-transform: translateX(-50%);
           transform: translateX(-50%);
-  height: 100%;
+  height: 100% !important;
   /* 縦にフィット */
   width: auto;
   /* 横は比率維持で自動拡張 */
