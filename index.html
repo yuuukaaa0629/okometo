@@ -491,15 +491,15 @@
 	<section id="contact" class="navbar-offset contact">
 		<!-- 背景動画 -->
 		<div class="video-background">
-			<video id="contact-video" autoplay muted loop playsinline preload="none" poster="./images/contact-fallback.webp">
-  				<!-- モバイル向け軽量（~540p） -->
-  				<source src="./videos/contact-background-mobile.mp4" type="video/mp4" media="(max-width: 767px)">
-  				<source src="./videos/contact-background-mobile.webm" type="video/webm" media="(max-width: 767px)">
-  				<!-- デスクトップ向け（~720p） -->
-  				<source src="./videos/contact-background.mp4" type="video/mp4" media="(min-width: 768px)">
- 			 	<source src="./videos/contact-background.webm" type="video/webm" media="(min-width: 768px)">
-				
-			</video>
+			<iframe
+			id="contact-vimeo"
+			src="https://player.vimeo.com/video/1118282319?background=1&autoplay=1&muted=1&loop=1&autopause=0&dnt=1"
+			frameborder="0"
+			allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
+			referrerpolicy="strict-origin-when-cross-origin"
+			title="contact-background"
+			onload="document.querySelector('#contact .video-background')?.classList.add('has-video')">
+		  </iframe>
 			<picture>
 				<!-- フォールバック画像 -->
 				<source srcset="./images/contact-fallback-mobile.webp" media="(max-width: 767px)" type="image/webp">

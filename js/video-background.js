@@ -1,19 +1,18 @@
 /**
- * 背景動画制御スクリプト（Contactセクション用）
- * - CSS/HTML（.video-background, .has-video）に合わせて実装
+ * 背景メディア制御スクリプト（Contactセクション用）
+ * - <video> と <iframe> (Vimeo) の両対応
  * - 失敗時は確実に静止画へフォールバック
- * - 画面内のときだけ再生（IntersectionObserver）
+ * - 動きやデータ節約設定を尊重
  */
 
 class VideoBackground {
   constructor() {
     this.section = null;         // .contact
     this.container = null;       // .contact .video-background
-    this.video = null;           // video要素
-    this.injectedImg = null;     // JSで注入したフォールバック画像（なければ null）
-    this.observer = null;
+    this.mediaEl = null;         // <video> または <iframe>
+    this.injectedImg = null;     // JSで注入したフォールバック画像
+    this.observer = null;        // IntersectionObserver（videoのみ）
 
-    // 初期化
     if (document.readyState === 'loading') {
       document.addEventListener('DOMContentLoaded', () => this.setup());
     } else {
@@ -24,59 +23,64 @@ class VideoBackground {
   setup() {
     this.section   = document.querySelector('.contact');
     this.container = document.querySelector('.contact .video-background');
-    this.video     = document.querySelector('.contact .video-background video');
+    this.mediaEl   = document.querySelector('.contact .video-background video, .contact .video-background iframe');
 
-    if (!this.section || !this.container || !this.video) {
-      console.warn('[VideoBackground] 必要な要素が見つかりません (.contact / .video-background / video)');
+    if (!this.section || !this.container || !this.mediaEl) {
+      console.warn('[VideoBackground] 必要な要素が見つかりません (.contact / .video-background / video|iframe)');
       return;
     }
 
-    // アクセシビリティ（動きを抑制している場合は静止画運用）
-    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    // アクセシビリティ（動きを抑制/省データ）
+    if (this.prefersReducedMotion() || this.prefersReducedData()) {
       this.useImageFallback();
       return;
     }
-    // 省データモードのユーザーは画像にフォールバック
-    if (window.matchMedia && window.matchMedia('(prefers-reduced-data: reduce)').matches) {
-      this.useImageFallback();
-      return;
+
+    if (this.mediaEl.tagName === 'VIDEO') {
+      this.setupVideoAttributes();
+      this.wireVideoEvents();
+      this.setupIntersectionObserver();
+    } else if (this.mediaEl.tagName === 'IFRAME') {
+      // Vimeo は iframe の load で表示OKにする
+      this.mediaEl.addEventListener('load', () => this.markReady(), { once: true });
+      // 追加の postMessage 制御までは行わず、背景として表示のみに徹する
     }
-    
-    // 画面幅に応じて poster を差し替え（<video> はレスポンシブ poster を持てないため JS で対応）
-    try {
-      const isMobile = window.matchMedia && window.matchMedia('(max-width: 767px)').matches;
-      if (isMobile) {
-        this.video.poster = './images/contact-fallback-mobile.webp';
-      } else {
-        this.video.poster = './images/contact-fallback.webp';
-      }
-    } catch (_) {}
-    this.setupVideoAttributes();
-    this.wireVideoEvents();
-    this.setupIntersectionObserver();
+  }
+
+  prefersReducedMotion() {
+    return window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  }
+
+  prefersReducedData() {
+    return window.matchMedia && window.matchMedia('(prefers-reduced-data: reduce)').matches;
   }
 
   setupVideoAttributes() {
+    const video = this.mediaEl;
     // 自動再生に必要な属性
-    this.video.muted = true;
-    this.video.loop = true;
-    this.video.playsInline = true; // iOS Safari
-    // 初期は軽量に
-    this.video.preload = 'none';
+    video.muted = true;
+    video.loop = true;
+    video.playsInline = true; // iOS Safari
+    video.preload = 'none';
+
+    // 画面幅に応じて poster を差し替え
+    try {
+      const isMobile = window.matchMedia && window.matchMedia('(max-width: 767px)').matches;
+      video.poster = isMobile ? './images/contact-fallback-mobile.webp' : './images/contact-fallback.webp';
+    } catch (_) {}
   }
 
   wireVideoEvents() {
-    // エラーハンドリング（読み込み失敗・停滞）
+    const video = this.mediaEl;
 
-    this.video.addEventListener('error', (e) => {
+    video.addEventListener('error', (e) => {
       console.error('[VideoBackground] 動画読み込みエラー:', e);
       this.useImageFallback();
     });
 
-    this.video.addEventListener('stalled', () => {
-      // ネットワーク停滞が続くならフォールバック
+    video.addEventListener('stalled', () => {
       setTimeout(() => {
-        if (this.video.networkState === HTMLMediaElement.NETWORK_LOADING) {
+        if (video.networkState === HTMLMediaElement.NETWORK_LOADING) {
           console.warn('[VideoBackground] 読み込み停滞、フォールバックに切替');
           this.useImageFallback();
         }
@@ -85,33 +89,32 @@ class VideoBackground {
   }
 
   setupIntersectionObserver() {
-    // 画面に見えている時だけ再生
+    // 画面に見えている時だけ再生（videoのみ）
+    const video = this.mediaEl;
     const options = { threshold: 0.1, rootMargin: '200px 0px' };
     this.observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
-        if (!this.video) return;
+        if (!video) return;
         if (entry.isIntersecting) {
-          // 見えたら本読み込み + 再生
-          this.video.preload = 'auto';
-          this.tryPlay(false);
+          video.preload = 'auto';
+          this.tryPlay();
         } else {
-          this.video.pause();
+          video.pause();
         }
       });
     }, options);
 
-    this.observer.observe(this.section);
+    if (this.section) this.observer.observe(this.section);
   }
 
-  async tryPlay(fromCanPlay) {
+  async tryPlay() {
+    const video = this.mediaEl;
     try {
-      // 再生を試みる
-      const playPromise = this.video.play();
+      const playPromise = video.play?.();
       if (playPromise && typeof playPromise.then === 'function') {
         await playPromise;
       }
-      // 再生できていれば動画を表示
-      this.container.classList.add('has-video');
+      this.markReady();
       // this.monitorPerformance(); // 必要になったら有効化
     } catch (err) {
       console.warn('[VideoBackground] 自動再生に失敗:', err && err.name ? err.name : err);
@@ -119,45 +122,45 @@ class VideoBackground {
     }
   }
 
+  markReady() {
+    this.container.classList.add('has-video');
+  }
+
   useImageFallback() {
-    // CSSの初期状態は「画像が見えて動画が非表示」。
-    // ただし HTML の構造が <video> 内のフォールバック<img> だけだと表示されないため、
-    // 必要に応じて <img> を .video-background 直下に注入する。
+    // CSS初期状態は画像表示/メディア非表示。ここでは念のための処理のみ。
     this.container.classList.remove('has-video');
 
-    // すでに直下に <img> があるか確認
+    // 直下に <img> が無い場合のみ、動画ポスター等から注入を試みる
     const directImg = this.container.querySelector(':scope > img');
-    if (directImg) {
-      // そのままCSSに任せる
-    } else {
-      // <video> 内のフォールバック <img> から src を拾って注入
-      const nestedImg = this.container.querySelector('video img');
-      const src = nestedImg?.getAttribute('src') || nestedImg?.getAttribute('data-src');
-
+    if (!directImg) {
+      let src = null;
+      if (this.mediaEl && this.mediaEl.tagName === 'VIDEO') {
+        // <video> 内の <img> を探す（あれば）
+        const nestedImg = this.container.querySelector('video img');
+        src = nestedImg?.getAttribute('src') || nestedImg?.getAttribute('data-src');
+      }
       if (src) {
         const img = new Image();
         img.src = src;
-        img.alt = nestedImg?.getAttribute('alt') || 'background fallback';
-        // CSS側（.video-background img, video）でレイアウト制御するためクラスは不要
+        img.alt = 'background fallback';
         this.container.appendChild(img);
         this.injectedImg = img;
-      } else {
-        // フォールバック画像の指定が無い場合は、何も注入できないのでログを出す
-        console.warn('[VideoBackground] フォールバック画像が見つかりませんでした。');
       }
     }
 
-    // 念のため動画は停止
-    if (this.video) {
-      this.video.pause();
+    // 念のため video は停止
+    if (this.mediaEl && this.mediaEl.tagName === 'VIDEO') {
+      try { this.mediaEl.pause(); } catch {}
     }
   }
 
   monitorPerformance() {
-    // 簡易FPSチェック。20fpsを継続的に下回ると静止画に切替
+    const video = this.mediaEl;
+    if (!video || video.tagName !== 'VIDEO') return;
+
     let lastTime = performance.now();
     let frames = 0;
-    let lowCount = 0; // 連続で低FPSになった回数
+    let lowCount = 0;
 
     const tick = () => {
       frames++;
@@ -167,51 +170,39 @@ class VideoBackground {
         frames = 0;
         lastTime = now;
 
-        if (fps < 20) {
-          lowCount++;
-        } else {
-          lowCount = 0;
-        }
-
-        if (lowCount >= 2) { // 約2秒連続で低FPS
+        if (fps < 20) lowCount++; else lowCount = 0;
+        if (lowCount >= 2) {
           console.warn('[VideoBackground] 低FPSが継続。画像に切替ます。');
           this.useImageFallback();
           return;
         }
       }
-      // すでにフォールバックしていなければ継続
-      if (this.container.classList.contains('has-video') && !this.video.paused) {
+      if (this.container.classList.contains('has-video') && !video.paused) {
         requestAnimationFrame(tick);
       }
     };
-
     requestAnimationFrame(tick);
   }
 
   // 手動トグル（デバッグ用）
   toggleVideo() {
-    if (!this.video) return;
-    if (this.video.paused) {
-      this.tryPlay(false);
+    const video = this.mediaEl;
+    if (!video || video.tagName !== 'VIDEO') return;
+    if (video.paused) {
+      this.tryPlay();
     } else {
-      this.video.pause();
+      video.pause();
       this.container.classList.remove('has-video');
     }
   }
 
   destroy() {
+    try { if (this.observer) this.observer.disconnect(); } catch {}
     try {
-      if (this.observer) this.observer.disconnect();
-    } catch {}
-    try {
-      if (this.video) {
-        this.video.pause();
-        // ソースの解放（必要に応じて）
-        // this.video.src = '';
-        // this.video.load();
+      if (this.mediaEl && this.mediaEl.tagName === 'VIDEO') {
+        this.mediaEl.pause();
       }
     } catch {}
-    // 注入した画像は削除（任意）
     if (this.injectedImg?.parentNode === this.container) {
       this.container.removeChild(this.injectedImg);
     }
@@ -229,5 +220,4 @@ window.addEventListener('beforeunload', () => {
   if (videoBackground) videoBackground.destroy();
 });
 
-// グローバルへ公開（デバッグ用）
 window.VideoBackground = VideoBackground;

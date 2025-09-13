@@ -16,52 +16,28 @@
         z-index: 0;
         overflow: hidden;
 
-        &::before {
-            content: '';
+        iframe {
             position: absolute;
-            inset: 0;
-            background: url('../../images/logo.png') repeat;
-            opacity: 0.02;
-            z-index:0;
-        }
-
-        &::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(
-                135deg,
-                rgba(45, 80, 22, 0.08) 0%,
-                rgba(0, 0, 0, 0.15) 50%,
-                rgba(139, 69, 19, 0.05) 100%
-            );
-            z-index: 1;
-        }
-
-        img,
-        video {
-            position: absolute;
-            inset: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            height: 100%;              /* 縦にフィット */
+            width: auto;               /* 横は比率維持で自動拡張 */
+            aspect-ratio: 16 / 9;      /* Vimeoの標準比率 */
+            object-fit: cover;         /* 念のため */
             object-position: center;
+            border: 0;
+            max-width: none;
+            max-height: none;
             display: block;
-            transition: opacity 0.35s ease;
-        }
-
-        img { opacity: 1; z-index: 1; }
-        video {
             opacity: 0;
             z-index: 1;
-            filter: blur(0.3px);
-            animation: slowZoom 25s ease-in-out infinite alternate;
-            transform-origin: center center;
+            pointer-events: none;
         }
 
         &.has-video {
-            video { opacity: 1; }
-            img   { opacity: 0; }
+            iframe { opacity: 1; }
+            img    { opacity: 0; }
         }
 
         @media (prefers-reduced-motion: reduce) {
@@ -71,6 +47,10 @@
             }
             img {
                 opacity: 1 !important;
+            }
+            iframe {
+                opacity: 0 !important;
+                pointer-events: none;
             }
         }
     }
