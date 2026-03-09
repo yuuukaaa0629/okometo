@@ -3154,13 +3154,13 @@ start---------------------------------------------------------------------------
   -webkit-mask-image: radial-gradient(circle, black 70%, rgba(0, 0, 0, 0) 100%);
 }
 
-.contact .contact-actions .amazon:hover .icon::before {
+.contact .contact-actions .line:hover .icon::before {
   background: radial-gradient(circle, rgba(0, 200, 83, 0.35) 0%, rgba(0, 200, 83, 0.13) 40%, rgba(0, 200, 83, 0.05) 70%, transparent 90%, transparent 100%);
   mask-image: radial-gradient(circle, black 70%, rgba(0, 0, 0, 0) 100%);
   -webkit-mask-image: radial-gradient(circle, black 70%, rgba(0, 0, 0, 0) 100%);
 }
 
-.contact .contact-actions .amazon:hover .icon::after {
+.contact .contact-actions .line:hover .icon::after {
   background: conic-gradient(from 0deg, transparent 0deg, rgba(0, 200, 83, 0.45) 90deg, transparent 180deg, rgba(0, 200, 83, 0.45) 270deg, transparent 360deg);
   mask-image: radial-gradient(circle, black 70%, rgba(0, 0, 0, 0) 100%);
   -webkit-mask-image: radial-gradient(circle, black 70%, rgba(0, 0, 0, 0) 100%);

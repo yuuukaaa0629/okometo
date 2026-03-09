@@ -324,7 +324,7 @@
         }
 
         // 各ボタンに個別のグロー効果（縁の外側はフェードアウト）
-        .amazon:hover .icon {
+        .line:hover .icon {
             &::before {
                 background: radial-gradient(circle, 
                     rgba(0, 200, 83, 0.35) 0%,   // 緑系（BASEのイメージ）
