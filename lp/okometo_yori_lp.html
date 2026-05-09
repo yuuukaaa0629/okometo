@@ -1,0 +1,1022 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="熊本で5代続く家族農家「お米とより」が育てるお米を、LINE会員向けにご案内。コシヒカリ・ヒノヒカリ・餅米、ギフト・オリジナルデザインギフトのご相談もLINEで気軽に。">
+<title>お米とより｜熊本の家族農家から、想いが伝わるお米ギフトを</title>
+<style>
+  /* ========== Reset & Base ========== */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+  body {
+    font-family: "Hiragino Mincho ProN", "Yu Mincho", "YuMincho", "Noto Serif JP", serif;
+    color: #3a3328;
+    background: #fbf8f2;
+    line-height: 1.8;
+    font-size: 15px;
+    letter-spacing: 0.02em;
+    -webkit-font-smoothing: antialiased;
+    padding-bottom: 88px; /* 追従CTA分の余白 */
+  }
+  img { max-width: 100%; height: auto; display: block; }
+  a { text-decoration: none; color: inherit; }
+
+  /* ========== Variables ========== */
+  :root {
+    --color-bg: #fbf8f2;
+    --color-bg-alt: #f3ede0;
+    --color-bg-soft: #f7f1e6;
+    --color-text: #3a3328;
+    --color-text-soft: #6b6253;
+    --color-accent: #2f5d3a;       /* 深い緑 */
+    --color-accent-dark: #244730;
+    --color-accent-soft: #88a079;
+    --color-brown: #8a6a4b;
+    --color-line: #06C755;
+    --color-border: #e6dfd0;
+  }
+
+  /* ========== Layout ========== */
+  .wrapper { max-width: 480px; margin: 0 auto; background: var(--color-bg); position: relative; overflow: hidden; }
+  section { padding: 56px 20px; }
+  .section-alt { background: var(--color-bg-alt); }
+  .section-soft { background: var(--color-bg-soft); }
+
+  /* ========== Common ========== */
+  .ornament {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 8px;
+    margin-bottom: 18px;
+    font-size: 0;
+    line-height: 0;
+  }
+  .ornament::before {
+    content: "";
+    display: block;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--color-accent-soft);
+    box-shadow:
+      -18px 0 0 var(--color-accent-soft),
+      18px 0 0 var(--color-accent-soft);
+  }
+  .section-title {
+    font-size: 22px;
+    font-weight: 600;
+    text-align: center;
+    color: var(--color-text);
+    line-height: 1.6;
+    margin-bottom: 10px;
+    letter-spacing: 0.05em;
+  }
+  .section-sub {
+    text-align: center;
+    color: var(--color-text-soft);
+    font-size: 13px;
+    margin-bottom: 28px;
+    letter-spacing: 0.08em;
+  }
+  .section-body {
+    font-size: 14px;
+    color: var(--color-text);
+    line-height: 2;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  .divider {
+    width: 40px; height: 1px; background: var(--color-accent-soft);
+    margin: 18px auto 24px;
+  }
+
+  /* ========== First View ========== */
+  .fv {
+    padding: 0;
+    background: var(--color-bg);
+    position: relative;
+  }
+  .fv-hero {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    background: #f0ead9;
+  }
+  .fv-hero img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  /* 画像左側をさらに明るく折り込んで読みやすくするオーバーレイ */
+  .fv-hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      100deg,
+      rgba(251, 248, 242, 0.85) 0%,
+      rgba(251, 248, 242, 0.55) 30%,
+      rgba(251, 248, 242, 0.1) 55%,
+      rgba(251, 248, 242, 0) 70%
+    );
+    pointer-events: none;
+  }
+  .fv-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    text-align: left;
+    pointer-events: none;
+  }
+  .fv-mini-label {
+    font-family: "Didot", "Times New Roman", serif;
+    font-size: 9.5px;
+    letter-spacing: 0.45em;
+    color: var(--color-accent);
+    margin-bottom: 14px;
+    display: block;
+    padding-left: 14px;
+    position: absolute;
+    top: 8%;
+    left: 7%;
+    right: 45%;
+  }
+  .fv-mini-label::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: 8px; height: 1px;
+    background: var(--color-accent);
+  }
+  .fv-headline {
+    font-size: 21px;
+    font-weight: 600;
+    line-height: 1.78;
+    color: var(--color-text);
+    margin-bottom: 18px;
+    letter-spacing: 0.04em;
+    text-shadow: 0 1px 2px rgba(255,255,255,0.6);
+    position: absolute;
+    top: calc(8% + 28px);
+    left: 7%;
+    right: 45%;
+  }
+  .fv-headline span {
+    color: var(--color-accent);
+    border-bottom: 1px solid var(--color-accent-soft);
+    padding-bottom: 2px;
+  }
+  .fv-sub {
+    font-size: 13px;
+    color: var(--color-text);
+    line-height: 1.85;
+    padding: 12px 14px 12px 16px;
+    border-left: 2px solid rgba(47, 93, 58, 0.3);
+    text-shadow: 0 1px 2px rgba(255,255,255,0.6);
+    position: absolute;
+    left: 7%;
+    right: 7%;
+    bottom: 7%;
+    width: auto;
+    background: rgba(251, 248, 242, 0.68);
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(58, 51, 40, 0.05);
+    font-weight: 600;
+  }
+  .fv-cta-area {
+    background: var(--color-bg);
+    padding: 22px 24px 30px;
+    text-align: center;
+    position: relative;
+  }
+  .fv-cta-group { display: flex; flex-direction: column; gap: 12px; align-items: center; }
+
+  /* 小さい画面 */
+  @media (max-width: 380px) {
+    .fv-mini-label { top: 6%; left: 6%; right: 40%; }
+    .fv-headline { top: calc(6% + 26px); left: 6%; right: 40%; font-size: 19px; line-height: 1.72; }
+    .fv-sub { left: 6%; right: 6%; bottom: 6%; font-size: 12px; padding: 10px 12px 10px 14px; }
+  }
+
+  /* ========== CTA Buttons ========== */
+  .cta-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 88%;
+    max-width: 380px;
+    height: 60px;
+    border-radius: 32px;
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    cursor: pointer;
+    transition: transform 0.12s ease, box-shadow 0.12s ease;
+    font-family: "Hiragino Sans", "Yu Gothic", sans-serif;
+    position: relative;
+  }
+  .cta-btn .arrow {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.2);
+    transition: transform 0.2s ease;
+    flex-shrink: 0;
+    position: relative;
+  }
+  .cta-btn .arrow::before {
+    content: "";
+    width: 7px;
+    height: 7px;
+    border-top: 2px solid currentColor;
+    border-right: 2px solid currentColor;
+    transform: rotate(45deg);
+    margin-left: -2px;
+  }
+  .cta-btn:hover .arrow,
+  .cta-btn:active .arrow { transform: translateX(3px); }
+  .cta-btn:active { transform: translateY(2px); box-shadow: 0 2px 6px rgba(47,93,58,0.2); }
+
+  .cta-main {
+    background: linear-gradient(180deg, #e89360 0%, #d97842 100%);
+    color: #fff;
+    box-shadow:
+      0 6px 16px rgba(217, 120, 66, 0.28),
+      0 2px 4px rgba(217, 120, 66, 0.18),
+      inset 0 1px 0 rgba(255,255,255,0.3);
+    text-shadow: 0 1px 1px rgba(0,0,0,0.08);
+    position: relative;
+  }
+  .cta-main:hover {
+    transform: translateY(-1px);
+    box-shadow:
+      0 10px 22px rgba(217, 120, 66, 0.35),
+      0 3px 6px rgba(217, 120, 66, 0.22),
+      inset 0 1px 0 rgba(255,255,255,0.3);
+  }
+  .cta-main .arrow {
+    background: rgba(255,255,255,0.28);
+  }
+
+  .cta-sub {
+    background: #fff;
+    color: var(--color-accent);
+    border: 1.5px solid var(--color-accent);
+    box-shadow: 0 3px 8px rgba(47,93,58,0.1);
+  }
+  .cta-sub .arrow {
+    background: rgba(47,93,58,0.1);
+    color: var(--color-accent);
+  }
+
+  /* ========== LINE Benefits ========== */
+  .benefits {
+    background: var(--color-bg-soft);
+    padding: 56px 20px;
+  }
+  .benefit-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 8px;
+  }
+  .benefit-card {
+    background: #fff;
+    border: 1px solid var(--color-border);
+    border-radius: 12px;
+    padding: 20px 14px;
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(58,51,40,0.04);
+  }
+  .benefit-icon {
+    width: 44px; height: 44px;
+    margin: 0 auto 12px;
+    display: flex; align-items: center; justify-content: center;
+    border: 1.5px solid var(--color-accent-soft);
+    border-radius: 50%;
+    color: var(--color-accent);
+  }
+  .benefit-icon svg { width: 22px; height: 22px; stroke: var(--color-accent); fill: none; stroke-width: 1.6; }
+  .benefit-title {
+    font-size: 13.5px;
+    font-weight: 600;
+    color: var(--color-text);
+    line-height: 1.6;
+    letter-spacing: 0.04em;
+  }
+
+  /* ========== About ========== */
+  .about-image { margin: 0 -20px 28px; }
+  .about-image img { width: 100%; }
+  .about-note {
+    font-size: 13px;
+    color: var(--color-text-soft);
+    text-align: center;
+    line-height: 2;
+    padding: 18px 16px;
+    background: #fff;
+    border: 1px solid var(--color-border);
+    border-radius: 10px;
+    margin-top: 22px;
+  }
+
+  /* ========== Products ========== */
+  .product-image { margin: 0 -20px 28px; }
+  .product-list {
+    display: flex; flex-direction: column; gap: 16px;
+    margin-top: 8px;
+  }
+  .product-item {
+    background: #fff;
+    border: 1px solid var(--color-border);
+    border-radius: 12px;
+    padding: 20px 18px;
+  }
+  .product-name {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--color-accent);
+    margin-bottom: 8px;
+    letter-spacing: 0.06em;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .product-name::before {
+    content: "";
+    width: 6px; height: 6px;
+    background: var(--color-accent-soft);
+    border-radius: 50%;
+    display: inline-block;
+  }
+  .product-desc {
+    font-size: 13.5px;
+    color: var(--color-text);
+    line-height: 1.9;
+  }
+  .product-supplement {
+    font-size: 12.5px;
+    color: var(--color-text-soft);
+    background: var(--color-bg-alt);
+    padding: 14px 16px;
+    border-radius: 8px;
+    margin-top: 18px;
+    line-height: 1.9;
+  }
+
+  /* ========== Gift ========== */
+  .gift-image { margin: 0 -20px 28px; }
+  .gift-points {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    margin: 22px 0 24px;
+  }
+  .gift-point {
+    background: #fff;
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    padding: 14px 6px;
+    text-align: center;
+    font-size: 11.5px;
+    color: var(--color-text);
+    line-height: 1.5;
+  }
+  .gift-point-icon {
+    color: var(--color-accent);
+    margin: 0 auto 8px;
+    width: 36px; height: 36px;
+    border: 1.5px solid var(--color-accent-soft);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .gift-point-icon svg { width: 18px; height: 18px; }
+
+  /* ========== Original Gift Flow ========== */
+  .original-image { margin: 0 -20px 28px; }
+  .flow-list {
+    display: flex; flex-direction: column; gap: 10px;
+    margin: 22px 0 24px;
+  }
+  .flow-step {
+    display: flex; align-items: flex-start; gap: 12px;
+    background: #fff;
+    border: 1px solid var(--color-border);
+    border-radius: 10px;
+    padding: 14px 16px;
+  }
+  .flow-num {
+    flex-shrink: 0;
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    background: var(--color-accent);
+    color: #fff;
+    font-size: 13px;
+    font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+    font-family: "Hiragino Sans", sans-serif;
+  }
+  .flow-content {
+    flex: 1;
+    font-size: 13.5px;
+    line-height: 1.7;
+  }
+  .flow-content strong {
+    display: block;
+    font-size: 14px;
+    color: var(--color-accent);
+    margin-bottom: 2px;
+  }
+  .flow-content span {
+    font-size: 12.5px;
+    color: var(--color-text-soft);
+  }
+  .original-tags {
+    display: flex; flex-wrap: wrap; gap: 8px;
+    justify-content: center;
+    margin-bottom: 22px;
+  }
+  .tag {
+    background: #fff;
+    border: 1px solid var(--color-accent-soft);
+    color: var(--color-accent);
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 12px;
+  }
+  .achievement-badge {
+    background: linear-gradient(135deg, #fff 0%, #f9f4e8 100%);
+    border: 1px solid var(--color-border);
+    border-radius: 10px;
+    padding: 16px;
+    text-align: center;
+    margin-bottom: 22px;
+  }
+  .achievement-badge .num {
+    font-size: 28px;
+    color: var(--color-accent);
+    font-weight: 700;
+    font-family: "Hiragino Sans", sans-serif;
+    letter-spacing: 0.04em;
+  }
+  .achievement-badge .label {
+    font-size: 12px;
+    color: var(--color-text-soft);
+    display: block;
+    margin-top: 2px;
+  }
+
+  /* ========== Reasons ========== */
+  .reasons-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 8px;
+  }
+  .reason-card {
+    background: #fff;
+    border: 1px solid var(--color-border);
+    border-radius: 12px;
+    padding: 22px 12px;
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(58,51,40,0.04);
+  }
+  .reason-num {
+    font-size: 24px;
+    color: var(--color-accent);
+    font-weight: 700;
+    font-family: "Hiragino Sans", sans-serif;
+    letter-spacing: 0.02em;
+    line-height: 1.2;
+    margin-bottom: 6px;
+  }
+  .reason-num small { font-size: 13px; font-weight: 500; }
+  .reason-label {
+    font-size: 12.5px;
+    color: var(--color-text);
+    line-height: 1.6;
+  }
+
+  /* ========== FAQ ========== */
+  .faq-list { display: flex; flex-direction: column; gap: 10px; margin-top: 8px; }
+  .faq-item {
+    background: #fff;
+    border: 1px solid var(--color-border);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  .faq-item summary {
+    padding: 18px 18px 18px 48px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--color-text);
+    cursor: pointer;
+    position: relative;
+    list-style: none;
+    line-height: 1.6;
+    transition: background 0.2s ease;
+  }
+  .faq-item summary::-webkit-details-marker { display: none; }
+  .faq-item summary::before {
+    content: "Q";
+    position: absolute;
+    left: 18px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 22px; height: 22px;
+    border-radius: 50%;
+    background: var(--color-accent);
+    color: #fff;
+    font-size: 12px;
+    font-family: "Hiragino Sans", sans-serif;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700;
+  }
+  .faq-item summary::after {
+    content: "+";
+    position: absolute;
+    right: 18px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--color-accent);
+    font-size: 22px;
+    transition: transform 0.2s ease;
+  }
+  .faq-item[open] summary::after {
+    content: "−";
+  }
+  .faq-answer {
+    padding: 0 18px 20px 48px;
+    font-size: 13px;
+    color: var(--color-text-soft);
+    line-height: 1.9;
+    position: relative;
+  }
+  .faq-answer::before {
+    content: "A";
+    position: absolute;
+    left: 18px;
+    top: 0;
+    width: 22px; height: 22px;
+    border-radius: 50%;
+    background: var(--color-bg-alt);
+    color: var(--color-accent);
+    font-size: 12px;
+    font-family: "Hiragino Sans", sans-serif;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700;
+  }
+
+  /* ========== Last CTA ========== */
+  .last-cta {
+    background: linear-gradient(180deg, #f3ede0 0%, #ebe2cc 100%);
+    text-align: center;
+  }
+  .last-cta .section-title { margin-bottom: 18px; }
+  .last-cta .section-body { margin-bottom: 28px; }
+
+  /* ========== Footer ========== */
+  footer {
+    background: #2a2620;
+    color: #cfc9bd;
+    padding: 32px 20px 24px;
+    text-align: center;
+    font-size: 12px;
+    line-height: 1.9;
+  }
+  footer .brand {
+    color: #fff;
+    font-size: 16px;
+    margin-bottom: 4px;
+    letter-spacing: 0.1em;
+  }
+  footer a { color: #cfc9bd; text-decoration: underline; }
+
+  /* ========== Sticky CTA ========== */
+  .sticky-cta {
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    background: rgba(255,255,255,0.96);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border-top: 1px solid var(--color-border);
+    padding: 12px 16px;
+    display: flex;
+    gap: 8px;
+    z-index: 100;
+    max-width: 480px;
+    margin: 0 auto;
+    box-shadow: 0 -4px 12px rgba(58,51,40,0.06);
+  }
+  .sticky-cta a {
+    flex: 1;
+    height: 52px;
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+    border-radius: 26px;
+    font-size: 14.5px;
+    font-weight: 700;
+    font-family: "Hiragino Sans", sans-serif;
+    transition: transform 0.12s ease, box-shadow 0.12s ease;
+    letter-spacing: 0.05em;
+  }
+  .sticky-cta a:active { transform: translateY(2px); }
+  .sticky-main {
+    background: linear-gradient(180deg, #e89360 0%, #d97842 100%);
+    color: #fff;
+    box-shadow:
+      0 5px 14px rgba(217, 120, 66, 0.32),
+      inset 0 1px 0 rgba(255,255,255,0.3);
+    text-shadow: 0 1px 1px rgba(0,0,0,0.08);
+    position: relative;
+  }
+  .sticky-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px; height: 24px;
+    color: #fff;
+  }
+  .sticky-main .arrow {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.25);
+    flex-shrink: 0;
+    position: relative;
+  }
+  .sticky-main .arrow::before {
+    content: "";
+    width: 7px;
+    height: 7px;
+    border-top: 2px solid currentColor;
+    border-right: 2px solid currentColor;
+    transform: rotate(45deg);
+    margin-left: -2px;
+  }
+
+  /* ========== Responsive ========== */
+  @media (max-width: 360px) {
+    .section-title { font-size: 20px; }
+    .fv-headline { font-size: 19px; }
+    .benefit-grid, .reasons-grid { grid-template-columns: 1fr; }
+    .gift-points { grid-template-columns: 1fr; }
+  }
+
+  /* ========== Decorative accents ========== */
+  .leaf-accent {
+    text-align: center;
+    color: var(--color-accent-soft);
+    font-size: 14px;
+    letter-spacing: 1em;
+    margin-bottom: 8px;
+  }
+</style>
+</head>
+<body>
+
+<div class="wrapper">
+
+  <!-- ============ 1. First View ============ -->
+  <section class="fv">
+    <div class="fv-hero">
+      <img src="./images/FirstView.webp" alt="お米とより｜熊本の家族農家が育てたお米と、手作りのオリジナルギフトパッケージ">
+      <div class="fv-overlay">
+        <span class="fv-mini-label">FROM KUMAMOTO</span>
+        <h1 class="fv-headline">
+          <span>家族農家</span>から、<br>
+          毎日のごはんと<br>
+          想いが伝わる<br>
+          <span>お米ギフト</span>を。
+        </h1>
+        <p class="fv-sub">
+          5代続く家族農家が育てたお米を、<br>
+          普段のごはん用にも、贈り物にも。
+        </p>
+      </div>
+    </div>
+    <div class="fv-cta-area">
+      <div class="fv-cta-group">
+        <a href="https://lin.ee/uI8L5D3" class="cta-btn cta-main" aria-label="LINEで会員価格を見る">
+          LINEで会員価格を見る
+          <span class="arrow" aria-hidden="true"></span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 2. LINE Benefits ============ -->
+  <section class="benefits">
+    <div class="ornament">・ ・ ・</div>
+    <h2 class="section-title">LINE登録でできること</h2>
+    <p class="section-sub">対象商品の会員価格や購入方法を、LINEからご確認いただけます。</p>
+    <div class="divider"></div>
+    <div class="benefit-grid">
+      <div class="benefit-card">
+        <div class="benefit-icon">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M4 12V5h7l9 9-7 7-9-9z"/>
+            <path d="M8 8h.01"/>
+            <path d="M10 15h4"/>
+            <path d="M12 13v4"/>
+          </svg>
+        </div>
+        <p class="benefit-title">会員価格で<br>お米を購入</p>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-icon">
+          <svg viewBox="0 0 24 24"><path d="M4 5h16v11H7l-3 3z"/></svg>
+        </div>
+        <p class="benefit-title">購入前の相談や<br>ギフト相談</p>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-icon">
+          <svg viewBox="0 0 24 24"><path d="M3 7h13v9H3zM16 10h4l2 3v3h-6zM7 19a2 2 0 100-4 2 2 0 000 4zM18 19a2 2 0 100-4 2 2 0 000 4z"/></svg>
+        </div>
+        <p class="benefit-title">配達や<br>大口注文の相談</p>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-icon">
+          <svg viewBox="0 0 24 24"><path d="M5 10v6h3l5 4V6L8 10H5zM17 8a5 5 0 010 8"/></svg>
+        </div>
+        <p class="benefit-title">マルシェ・<br>販売情報をお届け</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 3. About ============ -->
+  <section class="section-alt">
+    <div class="ornament">・ ・ ・</div>
+    <h2 class="section-title">五代続く、<br>家族だけの田んぼで。</h2>
+    <div class="divider"></div>
+    <div class="about-image">
+      <img src="./images/About.webp" alt="熊本県の田んぼで丁寧にお米を育てる家族農家「お米とより」の田植え・収穫風景" loading="lazy">
+    </div>
+    <p class="section-body">
+      大きな農家ではありません。<br>
+      だからこそ、一枚一枚の田んぼと<br>
+      じっくり向き合いながら、<br>
+      家族で大切に育てています。
+    </p>
+    <div class="about-note">
+      作り手の顔が見えるお米を、<br>
+      毎日の食卓へお届けします。
+    </div>
+  </section>
+
+  <!-- ============ 4. Products ============ -->
+  <section>
+    <div class="ornament">・ ・ ・</div>
+    <h2 class="section-title">その日の気分とおかずに、<br>ピッタリを選んで。</h2>
+    <p class="section-sub">画像では伝えきれない、選び方の目安を。</p>
+    <div class="product-image">
+      <img src="./images/Products.webp" alt="お米とよりの商品ラインナップ コシヒカリ・ヒノヒカリ・餅米" loading="lazy">
+    </div>
+    <div class="product-list">
+      <div class="product-item">
+        <h3 class="product-name">コシヒカリ</h3>
+        <p class="product-desc">しっかりした甘みや粘り、香りを楽しみたい方へ。白ごはんそのもののおいしさを味わいたい日や、少し特別感のある食卓におすすめです。</p>
+      </div>
+      <div class="product-item">
+        <h3 class="product-name">ヒノヒカリ</h3>
+        <p class="product-desc">甘み・粘り・食感のバランスを重視したい方へ。和食にも洋食にも合わせやすく、毎日のごはんやお弁当にも選びやすいお米です。</p>
+      </div>
+      <div class="product-item">
+        <h3 class="product-name">餅米（もちごめ）</h3>
+        <p class="product-desc">お赤飯・おこわ・お餅など、特別な日の食卓に。いつものごはんとは少し違う、季節感のある一品を作りたい方におすすめです。</p>
+      </div>
+    </div>
+    <p class="product-supplement">
+      <strong>通常米：</strong>ヒノヒカリ・コシヒカリの<strong>3kg / 5kg</strong>をご案内しています。<br>
+      <strong>餅米：</strong><strong>1kg袋〜</strong>ご用意しています。<br>
+      <strong>在庫：</strong>収穫量に限りがあるため、品種や時期によっては欠品する場合があります。<br>
+      <strong>大口注文：</strong>30kg / 60kgなどは、在庫状況に応じてご相談ください。
+    </p>
+  </section>
+
+  <!-- ============ 5. Gift ============ -->
+  <section class="section-soft" id="gift-consult">
+    <div class="ornament">・ ・ ・</div>
+    <h2 class="section-title">「ありがとう」を、<br>ごはんに乗せて。</h2>
+    <div class="divider"></div>
+    <div class="gift-image">
+      <img src="./images/Gift.webp" alt="心をこめて贈る、お米とよりのお米ギフト 結婚式・お祝い・お礼の贈り物" loading="lazy">
+    </div>
+    <p class="section-body">
+      花やスイーツもいいけれど、<br>
+      毎日食べるものだからこそ、<br>
+      もらって嬉しい。<br>
+      そんな贈り物に、選ばれています。
+    </p>
+    <div class="gift-points">
+      <div class="gift-point">
+        <span class="gift-point-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M6 12h12"/>
+            <path d="M7 12c0 4 2 7 5 7s5-3 5-7"/>
+            <path d="M8 19h8"/>
+            <path d="M9 9c-.8-.8-.8-1.7 0-2.5"/>
+            <path d="M12 9c-.8-.8-.8-1.7 0-2.5"/>
+            <path d="M15 9c-.8-.8-.8-1.7 0-2.5"/>
+          </svg>
+        </span>
+        こだわりの<br>お米
+      </div>
+      <div class="gift-point">
+        <span class="gift-point-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 8c-2-3-6-3-6 0 0 2 3 3 6 5 3-2 6-3 6-5 0-3-4-3-6 0z"/><path d="M4 14h16M6 14v6h12v-6"/></svg>
+        </span>
+        心を込めた<br>包装
+      </div>
+      <div class="gift-point">
+        <span class="gift-point-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="8" width="18" height="13" rx="1"/><path d="M3 12h18M12 8v13M8 8c-2 0-3-1-3-2.5S6 3 8 3c2 0 4 5 4 5s2-5 4-5c2 0 3 1 3 2.5S18 8 16 8"/></svg>
+        </span>
+        ギフト対応も<br>充実
+      </div>
+    </div>
+    <div class="fv-cta-group">
+      <a href="https://lin.ee/uI8L5D3" class="cta-btn cta-main" aria-label="ギフトについてLINEで相談する">
+        ギフトについてLINEで相談する
+        <span class="arrow" aria-hidden="true"></span>
+      </a>
+    </div>
+  </section>
+
+  <!-- ============ 6. Original Design Gift ============ -->
+  <section>
+    <div class="ornament">・ ・ ・</div>
+    <h2 class="section-title">名前も、二人の顔も、<br>パッケージに。</h2>
+    <div class="divider"></div>
+    <div class="original-image">
+      <img src="./images/Original.webp" alt="お名前・メッセージ・イラスト・写真入りのオリジナルデザインお米ギフト" loading="lazy">
+    </div>
+    <p class="section-body">
+      イラスト、お写真、手書きメッセージ。<br>
+      ちょっとしたアイデアをかたちにして、<br>
+      その人にしか贈れない一品に。<br>
+      出産内祝いや結婚、特別な日にどうぞ。
+    </p>
+
+    <div class="original-tags">
+      <span class="tag">お名前</span>
+      <span class="tag">メッセージ</span>
+      <span class="tag">イラスト</span>
+      <span class="tag">写真</span>
+      <span class="tag">デザイン相談</span>
+    </div>
+
+    <h3 class="section-title" style="font-size:17px; margin-top:12px;">ご注文の流れ</h3>
+    <div class="divider"></div>
+    <div class="flow-list">
+      <div class="flow-step">
+        <div class="flow-num">1</div>
+        <div class="flow-content">
+          <strong>LINEで相談</strong>
+          <span>イメージや内容をお気軽にお聞かせください。</span>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-num">2</div>
+        <div class="flow-content">
+          <strong>デザイン作成</strong>
+          <span>いただいた内容をもとに、オリジナルデザインをご提案・作成します。</span>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-num">3</div>
+        <div class="flow-content">
+          <strong>お届け</strong>
+          <span>心を込めて梱包し、大切な方のもとへお届けします。</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="fv-cta-group">
+      <a href="https://lin.ee/uI8L5D3" class="cta-btn cta-main" aria-label="オリジナルギフトを相談する">
+        オリジナルギフトを相談する
+        <span class="arrow" aria-hidden="true"></span>
+      </a>
+    </div>
+  </section>
+
+  <!-- ============ 7. Reasons ============ -->
+  <section class="section-alt">
+    <div class="ornament">・ ・ ・</div>
+    <h2 class="section-title">選ばれている理由</h2>
+    <div class="divider"></div>
+    <div class="reasons-grid">
+      <div class="reason-card">
+        <div class="reason-num">令和6年産<br><small>完売</small></div>
+        <p class="reason-label">多くのお客様に<br>選ばれました</p>
+      </div>
+      <div class="reason-card">
+        <div class="reason-num">7<small>組</small></div>
+        <p class="reason-label">オリジナルギフト<br>対応実績</p>
+      </div>
+      <!-- ※ オリジナルギフト実績はこちらのカードで一本化しました -->
+      <div class="reason-card">
+        <div class="reason-num"><small>地元店舗で</small><br>取扱あり</div>
+        <p class="reason-label">地域に根ざした<br>お米づくり</p>
+      </div>
+      <div class="reason-card">
+        <div class="reason-num"><small>マルシェ・</small><br>EC販売</div>
+        <p class="reason-label">幅広い販売<br>実績あり</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 8. FAQ ============ -->
+  <section>
+    <div class="ornament">・ ・ ・</div>
+    <h2 class="section-title">よくあるご質問</h2>
+    <div class="divider"></div>
+    <div class="faq-list">
+      <details class="faq-item">
+        <summary>LINE登録すると何ができますか?</summary>
+        <div class="faq-answer">会員価格のご案内、購入前のご相談、ギフトのご相談、配達や大口注文のご相談ができます。</div>
+      </details>
+      <details class="faq-item">
+        <summary>会員価格の対象商品は?</summary>
+        <div class="faq-answer">通常商品のヒノヒカリ・コシヒカリの3kg / 5kgが対象です。餅米やギフト商品は対象外となりますが、在庫がある場合はLINEからご相談いただけます。</div>
+      </details>
+      <details class="faq-item">
+        <summary>ギフトの相談はできますか?</summary>
+        <div class="faq-answer">固定デザインのギフトに加えて、オリジナルデザインのご相談もLINEで承っています。</div>
+      </details>
+      <details class="faq-item">
+        <summary>配達はできますか?</summary>
+        <div class="faq-answer">熊本市・八代市・宇城市周辺は、場所・時期・購入量に応じてご相談可能です。</div>
+      </details>
+      <details class="faq-item">
+        <summary>大口注文はできますか?</summary>
+        <div class="faq-answer">30kg / 60kgなどの大口注文もご相談いただけます。お気軽にLINEでお問い合わせください。</div>
+      </details>
+    </div>
+  </section>
+
+  <!-- ============ 9. Last CTA ============ -->
+  <section class="last-cta" id="line-register">
+    <div class="ornament">・ ・ ・</div>
+    <h2 class="section-title">お米選びやギフトで迷ったら、<br>LINEから気軽にご相談ください。</h2>
+    <div class="divider"></div>
+    <p class="section-body">
+      毎日のごはんに合うお米選びも、<br>
+      大切な方へのギフト相談も、<br>
+      LINEからお気軽にどうぞ。
+    </p>
+    <div class="fv-cta-group">
+      <a href="https://lin.ee/uI8L5D3" class="cta-btn cta-main" aria-label="LINEで相談・購入する">
+        LINEで相談・購入する
+        <span class="arrow" aria-hidden="true"></span>
+      </a>
+    </div>
+  </section>
+
+  <!-- ============ Footer ============ -->
+  <footer>
+    <div class="brand">お米とより</div>
+    <p style="font-size:11px; letter-spacing:0.16em; opacity:0.75; margin-top:-8px; margin-bottom:10px;">Rice &amp; Field Works</p>
+    <p>熊本県の田んぼから、全国の食卓へ。</p>
+    <p style="margin-top:14px; font-size:11px; opacity:0.7;">
+      © お米とより. All rights reserved.
+    </p>
+  </footer>
+
+</div>
+
+<!-- ============ Sticky CTA ============ -->
+<div class="sticky-cta">
+  <a href="https://lin.ee/uI8L5D3" class="sticky-main" aria-label="LINEでお米とよりとつながる">
+    <span class="sticky-icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63h2.386c.346 0 .627.285.627.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63.346 0 .628.285.628.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.282.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/></svg>
+    </span>
+    LINEでお米とよりとつながる
+    <span class="arrow" aria-hidden="true"></span>
+  </a>
+</div>
+
+<script>
+  // FAQ accordion: only one open at a time (任意機能、不要なら削除可)
+  document.querySelectorAll('.faq-item').forEach((item) => {
+    item.addEventListener('toggle', () => {
+      if (item.open) {
+        document.querySelectorAll('.faq-item').forEach(other => {
+          if (other !== item) other.open = false;
+        });
+      }
+    });
+  });
+</script>
+
+</body>
+</html>
