@@ -142,6 +142,7 @@
     top: 8%;
     left: 7%;
     right: 45%;
+    z-index: 1;
   }
   .fv-mini-label::before {
     content: "";
@@ -163,6 +164,7 @@
     top: calc(8% + 28px);
     left: 7%;
     right: 45%;
+    z-index: 1;
   }
   .fv-headline span {
     color: var(--color-accent);
@@ -185,6 +187,7 @@
     border-radius: 10px;
     box-shadow: 0 2px 8px rgba(58, 51, 40, 0.05);
     font-weight: 600;
+    z-index: 1;
   }
   .fv-cta-area {
     background: var(--color-bg);
@@ -313,6 +316,23 @@
   }
 
   /* ========== About ========== */
+  .about-title-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 10px;
+  }
+  .about-title-row .section-title {
+    margin-bottom: 0;
+    text-align: left;
+  }
+  .about-title-logo {
+    width: 108px;
+    height: auto;
+    flex-shrink: 0;
+    opacity: 0.9;
+  }
   .about-image { margin: 0 -20px 28px; }
   .about-image img { width: 100%; }
   .about-note {
@@ -474,6 +494,17 @@
   }
 
   /* ========== Reasons ========== */
+  .reason-intro {
+    font-size: 13px;
+    color: var(--color-text-soft);
+    line-height: 2;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.62);
+    border: 1px solid var(--color-border);
+    border-radius: 10px;
+    padding: 16px 14px;
+    margin: 0 0 20px;
+  }
   .reasons-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -591,6 +622,19 @@
     font-size: 12px;
     line-height: 1.9;
   }
+  .footer-logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 8px;
+  }
+  .footer-logo img {
+    width: 118px;
+    max-width: 42%;
+    height: auto;
+    opacity: 0.9;
+    filter: brightness(0) invert(1);
+  }
   footer .brand {
     color: #fff;
     font-size: 16px;
@@ -666,6 +710,8 @@
 
   /* ========== Responsive ========== */
   @media (max-width: 360px) {
+    .about-title-row { gap: 8px; }
+    .about-title-logo { width: 92px; }
     .section-title { font-size: 20px; }
     .fv-headline { font-size: 19px; }
     .benefit-grid, .reasons-grid { grid-template-columns: 1fr; }
@@ -718,7 +764,7 @@
   <section class="benefits">
     <div class="ornament">・ ・ ・</div>
     <h2 class="section-title">LINE登録でできること</h2>
-    <p class="section-sub">対象商品の会員価格や購入方法を、LINEからご確認いただけます。</p>
+    <p class="section-sub">対象商品の会員価格や購入方法を、<br>LINEからご確認いただけます。</p>
     <div class="divider"></div>
     <div class="benefit-grid">
       <div class="benefit-card">
@@ -756,7 +802,10 @@
   <!-- ============ 3. About ============ -->
   <section class="section-alt">
     <div class="ornament">・ ・ ・</div>
-    <h2 class="section-title">五代続く、<br>家族だけの田んぼで。</h2>
+    <div class="about-title-row">
+      <h2 class="section-title">小さな田んぼと、<br>家族で向き合う。</h2>
+      <img src="./images/logo.webp" alt="お米とより Rice &amp; Field Works" class="about-title-logo" loading="lazy" decoding="async">
+    </div>
     <div class="divider"></div>
     <div class="about-image">
       <img src="./images/About.webp" alt="熊本県の田んぼで丁寧にお米を育てる家族農家「お米とより」の田植え・収穫風景" loading="lazy">
@@ -912,8 +961,14 @@
   <!-- ============ 7. Reasons ============ -->
   <section class="section-alt">
     <div class="ornament">・ ・ ・</div>
-    <h2 class="section-title">選ばれている理由</h2>
+    <h2 class="section-title">少しずつ、選ばれています。</h2>
     <div class="divider"></div>
+    <p class="reason-intro">
+      販売を始めたのは、2025年8月ごろ。<br>
+      まだ実績は多くありませんが、<br>
+      ひとつひとつのご注文やご相談に、<br>
+      家族で丁寧に向き合っています。
+    </p>
     <div class="reasons-grid">
       <div class="reason-card">
         <div class="reason-num">令和6年産<br><small>完売</small></div>
@@ -984,6 +1039,9 @@
 
   <!-- ============ Footer ============ -->
   <footer>
+    <div class="footer-logo">
+      <img src="./images/logo.webp" alt="お米とより Rice &amp; Field Works" loading="lazy" decoding="async">
+    </div>
     <div class="brand">お米とより</div>
     <p style="font-size:11px; letter-spacing:0.16em; opacity:0.75; margin-top:-8px; margin-bottom:10px;">Rice &amp; Field Works</p>
     <p>熊本県の田んぼから、全国の食卓へ。</p>
